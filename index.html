@@ -486,6 +486,7 @@
     <div class="count-selector">
       <div class="count-selector-label" data-i18n="count.label">📷 Скільки камер вам потрібно?</div>
       <div class="count-options">
+        <label class="count-option" data-count="1"><input type="radio" name="cam-count" value="1"><span>1</span></label>
         <label class="count-option" data-count="2"><input type="radio" name="cam-count" value="2"><span>2</span></label>
         <label class="count-option active" data-count="3"><input type="radio" name="cam-count" value="3" checked><span>3</span></label>
         <label class="count-option" data-count="4"><input type="radio" name="cam-count" value="4"><span>4</span></label>
@@ -829,12 +830,14 @@
 <script>
 const INSTALLER_CONTACT = "+380979273791";
 
+// Цены оборудования (€) — актуальные Amazon.it, май 2026
 const PRICES = {
-  poeSwitch: 50,
-  cableAndSD: 27,
-  cameraStandard: 85,
-  cameraDuo3: 170,
-  cameraPTZ: 200,
+  poeSwitch: 45,         // TP-Link TL-SG1005P, 5-port, 4× PoE+ 65W (ASIN B0763TGBTS) — для 2+ камер
+  poeInjector: 20,       // TP-Link TL-PoE160S или аналог 802.3at — для 1 камеры
+  cableAndSD: 65,        // на 1 камеру: Cat6 outdoor ~13 + SanDisk 128GB ~20 + Junction Box B10 ~28 + расходники ~4
+  cameraStandard: 85,    // Reolink RLC-810A 4K (ASIN B08F7C37NZ)
+  cameraDuo3: 170,       // Reolink Duo 3 PoE 16MP (ASIN B0CM39K7CB) — Amazon.it €161.49 + буфер
+  cameraPTZ: 200,        // Reolink RLC-823A 16X PTZ — TODO: на Amazon.it реально €260-280
   laborFixed: 300,
   laborPerCamera: 50,
   ptzLaborSurcharge: 20
@@ -870,6 +873,7 @@ const T = {
     "variants.title": "Оберіть кількість і варіант",
     "variants.subtitle": "Чим більше камер — тим більше кутів покриття. Оберіть кількість, потім варіант.",
     "count.label": "📷 Скільки камер вам потрібно?",
+    "count.hint.1": "1 камера — для одного входу (двері, ворота, проїзд)",
     "count.hint.2": "2 камери — мінімум, для покриття входу і одного бокового кута",
     "count.hint.3": "3 камери — оптимально для дому (вхід, двір, задній кут)",
     "count.hint.4": "4 камери — для великої території / периметра",
@@ -1058,6 +1062,7 @@ const T = {
     "variants.title": "Выберите количество и вариант",
     "variants.subtitle": "Чем больше камер — тем больше углов покрытия. Выберите подходящее количество, потом вариант.",
     "count.label": "📷 Сколько камер вам нужно?",
+    "count.hint.1": "1 камера — для одного входа (дверь, ворота, проезд)",
     "count.hint.2": "2 камеры — минимум, для покрытия входа и одного бокового угла",
     "count.hint.3": "3 камеры — оптимально для дома (вход, двор, задний угол)",
     "count.hint.4": "4 камеры — для большой территории / периметра",
@@ -1246,6 +1251,7 @@ const T = {
     "variants.title": "Scegli quantità e pacchetto",
     "variants.subtitle": "Più telecamere — più angoli coperti. Scegli la quantità, poi il pacchetto.",
     "count.label": "📷 Quante telecamere ti servono?",
+    "count.hint.1": "1 telecamera — per un solo ingresso (porta, cancello, passo carraio)",
     "count.hint.2": "2 telecamere — minimo, per ingresso e un angolo laterale",
     "count.hint.3": "3 telecamere — ottimale per la casa (ingresso, cortile, retro)",
     "count.hint.4": "4 telecamere — per grandi proprietà / perimetro",
@@ -1450,7 +1456,8 @@ function calcHardware(variantNum, N) {
   if (variantNum === 1) cameras = N * PRICES.cameraStandard;
   else if (variantNum === 2) cameras = N * PRICES.cameraDuo3;
   else if (variantNum === 3) cameras = PRICES.cameraPTZ + (N - 1) * PRICES.cameraDuo3;
-  return PRICES.poeSwitch + N * PRICES.cableAndSD + cameras;
+  const network = N === 1 ? PRICES.poeInjector : PRICES.poeSwitch;
+  return network + N * PRICES.cableAndSD + cameras;
 }
 function calcLabor(variantNum, N) {
   return PRICES.laborFixed + N * PRICES.laborPerCamera +
