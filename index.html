@@ -162,9 +162,22 @@
   /* VARIANT CARDS */
   .variants {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 24px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
     margin-top: 20px;
+  }
+  .variant-card.budget .variant-header { background: linear-gradient(135deg, #fef3c7, #fde68a); }
+  .badge-budget {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #16a34a;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    z-index: 2;
   }
   .variant-card {
     background: var(--card-bg);
@@ -496,6 +509,58 @@
 
     <div class="variants">
 
+      <!-- VARIANT 0 - БЮДЖЕТНЫЙ -->
+      <div class="variant-card budget" data-variant="0">
+        <div class="badge-budget" data-i18n="badge.budget">💰 Эконом</div>
+        <div class="variant-header">
+          <div class="variant-name" data-i18n="v0.name">0. ЭКОНОМ</div>
+          <div class="variant-tagline" data-i18n="v0.tagline">WiFi камеры — самый дешёвый вариант. PTZ + сирена + прожектор. Требует хороший WiFi.</div>
+        </div>
+        <svg class="variant-image" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+          <rect width="300" height="200" fill="#f1f5f9"/>
+          <rect x="135" y="15" width="30" height="18" fill="#94a3b8"/>
+          <ellipse cx="150" cy="50" rx="62" ry="12" fill="#cbd5e1"/>
+          <rect x="88" y="50" width="124" height="18" fill="#e2e8f0"/>
+          <path d="M 50 115 Q 150 60 250 115" stroke="#3b82f6" stroke-width="2" fill="none" stroke-dasharray="3,2" opacity="0.55"/>
+          <polygon points="48,115 56,109 56,121" fill="#3b82f6" opacity="0.55"/>
+          <polygon points="252,115 244,109 244,121" fill="#3b82f6" opacity="0.55"/>
+          <circle cx="150" cy="118" r="56" fill="#fafafa" stroke="#cbd5e1" stroke-width="2"/>
+          <circle cx="150" cy="115" r="24" fill="#000"/>
+          <circle cx="150" cy="115" r="17" fill="#1e293b"/>
+          <circle cx="155" cy="110" r="5" fill="#60a5fa" opacity="0.75"/>
+          <circle cx="120" cy="145" r="3" fill="#fbbf24"/>
+          <circle cx="135" cy="152" r="3" fill="#fbbf24"/>
+          <circle cx="150" cy="154" r="3" fill="#fbbf24"/>
+          <circle cx="165" cy="152" r="3" fill="#fbbf24"/>
+          <circle cx="180" cy="145" r="3" fill="#fbbf24"/>
+          <text x="225" y="80" font-family="-apple-system,sans-serif" font-size="14" font-weight="700" fill="#3b82f6">))) WiFi</text>
+          <circle cx="115" cy="100" r="2.5" fill="#10b981"/>
+          <text x="150" y="190" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="13" font-weight="700" fill="#1e3a8a">WiFi PTZ + Color Night</text>
+        </svg>
+        <div class="variant-body">
+          <strong data-i18n="v0.cams">Камеры: TP-Link Tapo C520WS</strong>
+          <ul class="variant-features">
+            <li data-i18n="v0.f1">Поворот с телефона 360° (PTZ)</li>
+            <li data-i18n="v0.f2">Цветное ночное видение</li>
+            <li data-i18n="v0.f3">Встроенный прожектор + сирена</li>
+            <li data-i18n="v0.f4">Можно говорить через камеру</li>
+            <li data-i18n="v0.f5">Самый бюджетный вариант</li>
+            <li class="no" data-i18n="v0.f6">⚠️ Нужен стабильный WiFi</li>
+            <li class="no" data-i18n="v0.f7">⚠️ Нужна розетка 220V рядом</li>
+          </ul>
+        </div>
+        <div class="variant-price">
+          <div class="price-row"><span data-i18n="price.eq">Оборудование</span><span data-price="hardware">€0</span></div>
+          <div class="price-row"><span data-i18n="price.inst">Установка и настройка</span><span data-price="labor">€0</span></div>
+          <div class="price-total" data-price="total">€0</div>
+        </div>
+        <div class="variant-actions">
+          <a href="https://www.amazon.it/-/en/Tapo-C520WS-Starlight-Surveillance-Waterproof/dp/B0DY94MCLN" target="_blank" rel="noopener" class="btn btn-amazon" onclick="event.stopPropagation()">🛒 Amazon</a>
+          <a href="https://www.youtube.com/results?search_query=Tapo+C520WS+review" target="_blank" rel="noopener" class="btn btn-youtube" onclick="event.stopPropagation()"><span data-i18n="btn.video">▶️ Видео</span></a>
+          <button class="btn btn-select" data-i18n="btn.select">Выбрать</button>
+        </div>
+      </div>
+
       <!-- VARIANT 1 -->
       <div class="variant-card" data-variant="1">
         <div class="variant-header">
@@ -679,6 +744,22 @@
 
       <div class="addon-grid">
         <label class="addon-item">
+          <input type="checkbox" data-price="50" data-key="wifi">
+          <div class="addon-label">
+            <div class="addon-name" data-i18n="addon.wifi.n">📶 WiFi усилитель (репитер)</div>
+            <div class="addon-desc" data-i18n="addon.wifi.d">Если WiFi слабый снаружи — установлю репитер TP-Link, расширит сигнал на улицу. Рекомендую для Эконом-варианта.</div>
+          </div>
+          <div class="addon-price">+€50</div>
+        </label>
+        <label class="addon-item">
+          <input type="checkbox" data-price="120" data-key="mesh">
+          <div class="addon-label">
+            <div class="addon-name" data-i18n="addon.mesh.n">📡 Mesh WiFi система</div>
+            <div class="addon-desc" data-i18n="addon.mesh.d">Лучше репитера — бесшовная сеть на весь дом и двор (TP-Link Deco, 2 узла). Для больших домов.</div>
+          </div>
+          <div class="addon-price">+€120</div>
+        </label>
+        <label class="addon-item">
           <input type="checkbox" data-price="300" data-key="nvr">
           <div class="addon-label">
             <div class="addon-name" data-i18n="addon.nvr.n">📼 Рекордер з диском (NVR)</div>
@@ -840,7 +921,12 @@ const PRICES = {
   cameraPTZ: 200,        // Reolink RLC-823A 16X PTZ — TODO: на Amazon.it реально €260-280
   laborFixed: 300,
   laborPerCamera: 50,
-  ptzLaborSurcharge: 20
+  ptzLaborSurcharge: 20,
+  // V0 (Эконом / WiFi)
+  cameraTapoWiFi: 70,        // TP-Link Tapo C520WS PTZ WiFi (ASIN B0DY94MCLN)
+  sdAndPowerV0: 20,          // SD + удлинитель на 1 WiFi камеру
+  laborFixedV0: 150,         // Эконом: в 2× меньше (без прокладки кабеля)
+  laborPerCameraV0: 25
 };
 
 // ============= TRANSLATIONS =============
@@ -878,6 +964,22 @@ const T = {
     "count.hint.3": "3 камери — оптимально для дому (вхід, двір, задній кут)",
     "count.hint.4": "4 камери — для великої території / периметра",
 
+    "v0.name": "0. ЕКОНОМ",
+    "v0.tagline": "WiFi камери — найдешевший варіант. PTZ + сирена + прожектор. Потребує гарний WiFi.",
+    "v0.cams": "Камери: TP-Link Tapo C520WS",
+    "v0.f1": "Поворот з телефону 360° (PTZ)",
+    "v0.f2": "Кольорове нічне бачення",
+    "v0.f3": "Вбудований прожектор + сирена",
+    "v0.f4": "Можна говорити через камеру",
+    "v0.f5": "Найбюджетніший варіант",
+    "v0.f6": "⚠️ Потрібен стабільний WiFi",
+    "v0.f7": "⚠️ Потрібна розетка 220V поряд",
+    "v0.full": "Варіант 0: ЕКОНОМ",
+    "badge.budget": "💰 Економ",
+    "addon.wifi.n": "📶 WiFi підсилювач (репітер)",
+    "addon.wifi.d": "Якщо WiFi слабкий надворі — встановлю репітер TP-Link, розширить сигнал на вулицю. Рекомендую для Економ-варіанту.",
+    "addon.mesh.n": "📡 Mesh WiFi система",
+    "addon.mesh.d": "Краще за репітер — безшовна мережа на весь дім і двір (TP-Link Deco, 2 вузли). Для великих будинків.",
     "v1.name": "1. БАЗОВИЙ",
     "v1.tagline": "Простий надійний запис + сповіщення. Для тих, кому важлива ціна.",
     "v1.cams": "Камери: Reolink RLC-810A (4K)",
@@ -1067,6 +1169,22 @@ const T = {
     "count.hint.3": "3 камеры — оптимально для дома (вход, двор, задний угол)",
     "count.hint.4": "4 камеры — для большой территории / периметра",
 
+    "v0.name": "0. ЭКОНОМ",
+    "v0.tagline": "WiFi камеры — самый дешёвый вариант. PTZ + сирена + прожектор. Требует хороший WiFi.",
+    "v0.cams": "Камеры: TP-Link Tapo C520WS",
+    "v0.f1": "Поворот с телефона 360° (PTZ)",
+    "v0.f2": "Цветное ночное видение",
+    "v0.f3": "Встроенный прожектор + сирена",
+    "v0.f4": "Можно говорить через камеру",
+    "v0.f5": "Самый бюджетный вариант",
+    "v0.f6": "⚠️ Нужен стабильный WiFi",
+    "v0.f7": "⚠️ Нужна розетка 220V рядом",
+    "v0.full": "Вариант 0: ЭКОНОМ",
+    "badge.budget": "💰 Эконом",
+    "addon.wifi.n": "📶 WiFi усилитель (репитер)",
+    "addon.wifi.d": "Если WiFi слабый снаружи — установлю репитер TP-Link, расширит сигнал на улицу. Рекомендую для Эконом-варианта.",
+    "addon.mesh.n": "📡 Mesh WiFi система",
+    "addon.mesh.d": "Лучше репитера — бесшовная сеть на весь дом и двор (TP-Link Deco, 2 узла). Для больших домов.",
     "v1.name": "1. БАЗОВЫЙ",
     "v1.tagline": "Простая надёжная запись + уведомления. Для тех, кому важна цена.",
     "v1.cams": "Камеры: Reolink RLC-810A (4K)",
@@ -1256,6 +1374,22 @@ const T = {
     "count.hint.3": "3 telecamere — ottimale per la casa (ingresso, cortile, retro)",
     "count.hint.4": "4 telecamere — per grandi proprietà / perimetro",
 
+    "v0.name": "0. ECONOMY",
+    "v0.tagline": "Telecamere WiFi — il pacchetto più economico. PTZ + sirena + faretto. Serve un buon WiFi.",
+    "v0.cams": "Telecamere: TP-Link Tapo C520WS",
+    "v0.f1": "Rotazione dal telefono 360° (PTZ)",
+    "v0.f2": "Visione notturna a colori",
+    "v0.f3": "Faretto + sirena integrati",
+    "v0.f4": "Si può parlare attraverso la telecamera",
+    "v0.f5": "Il pacchetto più economico",
+    "v0.f6": "⚠️ Serve un WiFi stabile",
+    "v0.f7": "⚠️ Serve presa 220V vicina",
+    "v0.full": "Pacchetto 0: ECONOMY",
+    "badge.budget": "💰 Economy",
+    "addon.wifi.n": "📶 Estensore WiFi (ripetitore)",
+    "addon.wifi.d": "Se il WiFi è debole all'esterno — installerò un ripetitore TP-Link, estenderà il segnale fuori. Consigliato per il pacchetto Economy.",
+    "addon.mesh.n": "📡 Sistema Mesh WiFi",
+    "addon.mesh.d": "Meglio del ripetitore — rete senza interruzioni in tutta la casa e il giardino (TP-Link Deco, 2 nodi). Per case grandi.",
     "v1.name": "1. BASE",
     "v1.tagline": "Registrazione affidabile + notifiche. Per chi cerca il prezzo migliore.",
     "v1.cams": "Telecamere: Reolink RLC-810A (4K)",
@@ -1452,6 +1586,10 @@ function updateCountHint() {
 }
 
 function calcHardware(variantNum, N) {
+  // V0: WiFi Tapo — нет PoE switch, нет Ethernet, дешевле обвязка
+  if (variantNum === 0) {
+    return N * (PRICES.cameraTapoWiFi + PRICES.sdAndPowerV0);
+  }
   let cameras = 0;
   if (variantNum === 1) cameras = N * PRICES.cameraStandard;
   else if (variantNum === 2) cameras = N * PRICES.cameraDuo3;
@@ -1460,12 +1598,16 @@ function calcHardware(variantNum, N) {
   return network + N * PRICES.cableAndSD + cameras;
 }
 function calcLabor(variantNum, N) {
+  // V0: проще монтаж (нет прокладки кабеля) — в 2× дешевле
+  if (variantNum === 0) {
+    return PRICES.laborFixedV0 + N * PRICES.laborPerCameraV0;
+  }
   return PRICES.laborFixed + N * PRICES.laborPerCamera +
     (variantNum === 3 ? PRICES.ptzLaborSurcharge : 0);
 }
 
 function refreshAllPrices() {
-  [1, 2, 3].forEach(v => {
+  [0, 1, 2, 3].forEach(v => {
     const card = document.querySelector(`.variant-card[data-variant="${v}"]`);
     if (!card) return;
     const hw = calcHardware(v, state.cameraCount);
