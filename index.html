@@ -1810,7 +1810,7 @@ function updateSummary() {
   const breakdownEl = document.getElementById('summary-breakdown');
   const orderBtn = document.getElementById('btn-order');
 
-  if (!state.selectedVariant) {
+  if (state.selectedVariant === null) {
     variantEl.textContent = t('sum.placeholder');
     totalEl.textContent = '€0';
     breakdownEl.textContent = '';
@@ -1837,7 +1837,7 @@ function updateSummary() {
 }
 
 function openOrderModal() {
-  if (!state.selectedVariant) return;
+  if (state.selectedVariant === null) return;
   const v = state.selectedVariant;
   const N = state.cameraCount;
   const addons = getCheckedAddons();
