@@ -1662,15 +1662,26 @@ document.querySelectorAll('.lang-btn').forEach(btn => {
   btn.addEventListener('click', () => applyLanguage(btn.dataset.lang));
 });
 
+// Helper: set camera count + update UI consistently
+function setCameraCount(n) {
+  state.cameraCount = n;
+  document.querySelectorAll('.count-option').forEach(o => {
+    const isActive = parseInt(o.dataset.count) === n;
+    o.classList.toggle('active', isActive);
+    const input = o.querySelector('input');
+    if (input) input.checked = isActive;
+  });
+  updateCountHint();
+  refreshAllPrices();
+}
+
 // CAMERA COUNT
 document.querySelectorAll('.count-option').forEach(opt => {
   opt.addEventListener('click', () => {
-    document.querySelectorAll('.count-option').forEach(o => o.classList.remove('active'));
-    opt.classList.add('active');
-    opt.querySelector('input').checked = true;
-    state.cameraCount = parseInt(opt.dataset.count);
-    updateCountHint();
-    refreshAllPrices();
+    const requested = parseInt(opt.dataset.count);
+    // V3 (Премиум) — минимум 2 камеры: при выборе "1" авто-переключаемся на "2"
+    const actual = (state.selectedVariant === 3 && requested < 2) ? 2 : requested;
+    setCameraCount(actual);
   });
 });
 
@@ -1681,7 +1692,12 @@ document.querySelectorAll('.variant-card').forEach(card => {
     document.querySelectorAll('.variant-card').forEach(c => c.classList.remove('selected'));
     card.classList.add('selected');
     state.selectedVariant = parseInt(card.dataset.variant);
-    updateSummary();
+    // V3 требует минимум 2 камеры: авто-апгрейд если выбрана 1
+    if (state.selectedVariant === 3 && state.cameraCount < 2) {
+      setCameraCount(2);
+    } else {
+      updateSummary();
+    }
   });
 });
 
