@@ -660,6 +660,7 @@
         <div class="variant-header">
           <div class="variant-name" data-i18n="v3.name">3. ПРЕМІУМ</div>
           <div class="variant-tagline" data-i18n="v3.tagline">1 поворотна камера (крутиться з телефону) + 2 камери 180°. Максимальний контроль.</div>
+          <div style="margin-top:8px; color:#16a34a; font-size:0.82rem; font-weight:600;" data-i18n="v3.minNote">ℹ️ Мінімум 2 камери (1 PTZ + 1 Duo)</div>
         </div>
         <svg class="variant-image" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
           <rect width="300" height="200" fill="#f1f5f9"/>
@@ -714,23 +715,25 @@
         <thead>
           <tr>
             <th data-i18n="comp.h.feature">Можливість</th>
+            <th data-i18n="comp.h.v0">0. Економ</th>
             <th data-i18n="comp.h.v1">1. Базовий</th>
             <th data-i18n="comp.h.v2">2. Комфорт</th>
             <th data-i18n="comp.h.v3">3. Преміум</th>
           </tr>
         </thead>
         <tbody>
-          <tr><td data-i18n="comp.r1">Чіткість зображення</td><td>4K (8MP)</td><td>16MP</td><td>16MP + PTZ</td></tr>
-          <tr><td data-i18n="comp.r2">Кут огляду</td><td>87°</td><td>180°</td><td data-i18n="comp.r2.v3">180° + 360° поворот</td></tr>
-          <tr><td data-i18n="comp.r3">Кольорове нічне бачення</td><td data-i18n="comp.r3.v1">❌ Чорно-біле</td><td>✅</td><td>✅</td></tr>
-          <tr><td data-i18n="comp.r4">Сирена для відлякування</td><td>❌</td><td>✅</td><td>✅</td></tr>
-          <tr><td data-i18n="comp.r5">Прожектор LED</td><td>❌</td><td>✅</td><td>✅</td></tr>
-          <tr><td data-i18n="comp.r6">Говорити через камеру</td><td data-i18n="comp.r6.v1">❌ Тільки чути</td><td>✅</td><td>✅</td></tr>
-          <tr><td data-i18n="comp.r7">Поворот камери з телефону</td><td>❌</td><td>❌</td><td data-i18n="comp.r7.v3">✅ (1 камера)</td></tr>
-          <tr><td data-i18n="comp.r8">Зум (наближення)</td><td>❌</td><td>❌</td><td>✅ 16×</td></tr>
-          <tr><td data-i18n="comp.r9">Автоматично слідкує за рухом</td><td>❌</td><td>❌</td><td>✅</td></tr>
-          <tr><td data-i18n="comp.r10">Запис на карту пам'яті</td><td>✅</td><td>✅</td><td>✅</td></tr>
-          <tr><td data-i18n="comp.r11">Скільки зберігається архів</td><td data-i18n="comp.r11.val">~30-60 днів</td><td data-i18n="comp.r11.val">~30-60 днів</td><td data-i18n="comp.r11.val">~30-60 днів</td></tr>
+          <tr><td data-i18n="comp.r12">Тип підключення</td><td data-i18n="comp.r12.v0">WiFi</td><td data-i18n="comp.r12.poe">Кабель PoE</td><td data-i18n="comp.r12.poe">Кабель PoE</td><td data-i18n="comp.r12.poe">Кабель PoE</td></tr>
+          <tr><td data-i18n="comp.r1">Чіткість зображення</td><td>2K (4MP)</td><td>4K (8MP)</td><td>16MP</td><td>16MP + PTZ</td></tr>
+          <tr><td data-i18n="comp.r2">Кут огляду</td><td data-i18n="comp.r2.v0">360° (PTZ)</td><td>87°</td><td>180°</td><td data-i18n="comp.r2.v3">180° + 360° поворот</td></tr>
+          <tr><td data-i18n="comp.r3">Кольорове нічне бачення</td><td>✅</td><td data-i18n="comp.r3.v1">❌ Чорно-біле</td><td>✅</td><td>✅</td></tr>
+          <tr><td data-i18n="comp.r4">Сирена для відлякування</td><td>✅</td><td>❌</td><td>✅</td><td>✅</td></tr>
+          <tr><td data-i18n="comp.r5">Прожектор LED</td><td>✅</td><td>❌</td><td>✅</td><td>✅</td></tr>
+          <tr><td data-i18n="comp.r6">Говорити через камеру</td><td>✅</td><td data-i18n="comp.r6.v1">❌ Тільки чути</td><td>✅</td><td>✅</td></tr>
+          <tr><td data-i18n="comp.r7">Поворот камери з телефону</td><td data-i18n="comp.r7.v0">✅ (всі камери)</td><td>❌</td><td>❌</td><td data-i18n="comp.r7.v3">✅ (1 камера)</td></tr>
+          <tr><td data-i18n="comp.r8">Зум (наближення)</td><td data-i18n="comp.r8.v0">Цифровий</td><td>❌</td><td>❌</td><td>✅ 16×</td></tr>
+          <tr><td data-i18n="comp.r9">Автоматично слідкує за рухом</td><td>✅</td><td>❌</td><td>❌</td><td>✅</td></tr>
+          <tr><td data-i18n="comp.r10">Запис на карту пам'яті</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+          <tr><td data-i18n="comp.r11">Скільки зберігається архів</td><td data-i18n="comp.r11.val">~30-60 днів</td><td data-i18n="comp.r11.val">~30-60 днів</td><td data-i18n="comp.r11.val">~30-60 днів</td><td data-i18n="comp.r11.val">~30-60 днів</td></tr>
         </tbody>
       </table>
     </div>
@@ -1022,6 +1025,15 @@ const T = {
     "comp.title": "Детальне порівняння",
     "comp.subtitle": "Усі можливості в одній таблиці",
     "comp.h.feature": "Можливість",
+    "comp.h.v0": "0. Економ",
+    "comp.r12": "Тип підключення",
+    "comp.r12.v0": "WiFi",
+    "comp.r12.poe": "Кабель PoE",
+    "comp.r2.v0": "360° (PTZ)",
+    "comp.r7.v0": "✅ (всі камери)",
+    "comp.r8.v0": "Цифровий",
+    "count.hint.1": "1 камера — для однієї точки (вхід чи гараж)",
+    "v3.minNote": "ℹ️ Мінімум 2 камери (1 PTZ + 1 Duo)",
     "comp.h.v1": "1. Базовий",
     "comp.h.v2": "2. Комфорт",
     "comp.h.v3": "3. Преміум",
@@ -1227,6 +1239,15 @@ const T = {
     "comp.title": "Подробное сравнение",
     "comp.subtitle": "Все возможности в одной таблице",
     "comp.h.feature": "Возможность",
+    "comp.h.v0": "0. Эконом",
+    "comp.r12": "Тип подключения",
+    "comp.r12.v0": "WiFi",
+    "comp.r12.poe": "Кабель PoE",
+    "comp.r2.v0": "360° (PTZ)",
+    "comp.r7.v0": "✅ (все камеры)",
+    "comp.r8.v0": "Цифровой",
+    "count.hint.1": "1 камера — для одной точки (вход или гараж)",
+    "v3.minNote": "ℹ️ Минимум 2 камеры (1 PTZ + 1 Duo)",
     "comp.h.v1": "1. Базовый",
     "comp.h.v2": "2. Комфорт",
     "comp.h.v3": "3. Премиум",
@@ -1432,6 +1453,15 @@ const T = {
     "comp.title": "Confronto dettagliato",
     "comp.subtitle": "Tutte le funzioni in una tabella",
     "comp.h.feature": "Funzione",
+    "comp.h.v0": "0. Economy",
+    "comp.r12": "Tipo di connessione",
+    "comp.r12.v0": "WiFi",
+    "comp.r12.poe": "Cavo PoE",
+    "comp.r2.v0": "360° (PTZ)",
+    "comp.r7.v0": "✅ (tutte)",
+    "comp.r8.v0": "Digitale",
+    "count.hint.1": "1 telecamera — per un singolo punto (ingresso o garage)",
+    "v3.minNote": "ℹ️ Minimo 2 telecamere (1 PTZ + 1 Duo)",
     "comp.h.v1": "1. Base",
     "comp.h.v2": "2. Comfort",
     "comp.h.v3": "3. Premium",
@@ -1585,24 +1615,30 @@ function updateCountHint() {
   if (hintEl) hintEl.textContent = t(`count.hint.${state.cameraCount}`);
 }
 
+// V3 (Премиум) — комплект минимум 2 камеры: 1 PTZ + минимум 1 Duo
+function effectiveCount(variantNum, N) {
+  return variantNum === 3 ? Math.max(N, 2) : N;
+}
 function calcHardware(variantNum, N) {
+  const M = effectiveCount(variantNum, N);
   // V0: WiFi Tapo — нет PoE switch, нет Ethernet, дешевле обвязка
   if (variantNum === 0) {
-    return N * (PRICES.cameraTapoWiFi + PRICES.sdAndPowerV0);
+    return M * (PRICES.cameraTapoWiFi + PRICES.sdAndPowerV0);
   }
   let cameras = 0;
-  if (variantNum === 1) cameras = N * PRICES.cameraStandard;
-  else if (variantNum === 2) cameras = N * PRICES.cameraDuo3;
-  else if (variantNum === 3) cameras = PRICES.cameraPTZ + (N - 1) * PRICES.cameraDuo3;
-  const network = N === 1 ? PRICES.poeInjector : PRICES.poeSwitch;
-  return network + N * PRICES.cableAndSD + cameras;
+  if (variantNum === 1) cameras = M * PRICES.cameraStandard;
+  else if (variantNum === 2) cameras = M * PRICES.cameraDuo3;
+  else if (variantNum === 3) cameras = PRICES.cameraPTZ + (M - 1) * PRICES.cameraDuo3;
+  const network = M === 1 ? PRICES.poeInjector : PRICES.poeSwitch;
+  return network + M * PRICES.cableAndSD + cameras;
 }
 function calcLabor(variantNum, N) {
+  const M = effectiveCount(variantNum, N);
   // V0: проще монтаж (нет прокладки кабеля) — в 2× дешевле
   if (variantNum === 0) {
-    return PRICES.laborFixedV0 + N * PRICES.laborPerCameraV0;
+    return PRICES.laborFixedV0 + M * PRICES.laborPerCameraV0;
   }
-  return PRICES.laborFixed + N * PRICES.laborPerCamera +
+  return PRICES.laborFixed + M * PRICES.laborPerCamera +
     (variantNum === 3 ? PRICES.ptzLaborSurcharge : 0);
 }
 
