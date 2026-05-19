@@ -167,17 +167,55 @@
     margin-top: 20px;
   }
   .variant-card.budget .variant-header { background: linear-gradient(135deg, #fef3c7, #fde68a); }
-  .badge-budget {
+  .badge-budget, .badge-premium, .badge-recommended {
     position: absolute;
     top: 12px;
     right: 12px;
-    background: #16a34a;
     color: white;
     padding: 4px 12px;
     border-radius: 12px;
     font-size: 0.85rem;
     font-weight: 600;
     z-index: 2;
+  }
+  .badge-budget { background: #16a34a; }
+  .badge-premium { background: linear-gradient(135deg, #7c3aed, #4f46e5); box-shadow: 0 2px 8px rgba(124,58,237,0.4); }
+  .badge-recommended { background: linear-gradient(135deg, #f97316, #ea580c); box-shadow: 0 2px 8px rgba(249,115,22,0.4); animation: pulse-rec 2s infinite; }
+  @keyframes pulse-rec {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.06); }
+  }
+  .variant-card.premium .variant-header { background: linear-gradient(135deg, #ddd6fe, #c7d2fe); }
+  .variant-card.recommended { border-color: #f97316; box-shadow: 0 0 0 4px rgba(249,115,22,0.15), var(--shadow); }
+  .variant-card.recommended .variant-header { background: linear-gradient(135deg, #dbeafe, #bfdbfe); }
+
+  /* SAVINGS CALLOUT */
+  .savings-callout {
+    background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+    border: 2px solid #16a34a;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 12px rgba(22,163,74,0.1);
+  }
+  .savings-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .savings-block { text-align: center; min-width: 140px; }
+  .savings-label { font-size: 0.85rem; color: #64748b; margin-bottom: 4px; font-weight: 600; }
+  .savings-value { font-size: 1.5rem; font-weight: 800; }
+  .savings-pro .savings-value { color: #ef4444; text-decoration: line-through; opacity: 0.7; }
+  .savings-me .savings-value { color: var(--primary); }
+  .savings-saved .savings-value { color: #16a34a; }
+  .savings-arrow { font-size: 2rem; color: #94a3b8; font-weight: 700; }
+  .savings-note { text-align: center; margin-top: 14px; color: #475569; font-size: 0.95rem; }
+  @media (max-width: 700px) {
+    .savings-arrow { display: none; }
+    .savings-block { flex: 1 1 100%; padding: 8px; }
   }
   .variant-card {
     background: var(--card-bg);
@@ -507,7 +545,171 @@
       <div class="count-hint" id="count-hint" data-i18n="count.hint.3">3 камери — оптимально для дому (вхід, двір, задній кут)</div>
     </div>
 
+    <!-- MARKETING: Savings callout -->
+    <div class="savings-callout">
+      <div class="savings-row">
+        <div class="savings-block savings-pro">
+          <div class="savings-label" data-i18n="savings.pro.label">🏢 Профессиональная фирма в Италии</div>
+          <div class="savings-value" data-i18n="savings.pro.value">€2 000 – €2 800</div>
+        </div>
+        <div class="savings-arrow">→</div>
+        <div class="savings-block savings-me">
+          <div class="savings-label" data-i18n="savings.me.label">✅ Моё предложение</div>
+          <div class="savings-value" data-i18n="savings.me.value">от €540</div>
+        </div>
+        <div class="savings-arrow">=</div>
+        <div class="savings-block savings-saved">
+          <div class="savings-label" data-i18n="savings.saved.label">💸 Экономия до</div>
+          <div class="savings-value" data-i18n="savings.saved.value">€2 200</div>
+        </div>
+      </div>
+      <div class="savings-note" data-i18n="savings.note">То же оборудование Reolink/TP-Link, та же гарантия Amazon, та же официальная установка — только без накруток фирмы.</div>
+    </div>
+
     <div class="variants">
+
+      <!-- VARIANT 3 - ПРЕМИУМ (ТОП - якорь, показываем первым) -->
+      <div class="variant-card premium" data-variant="3">
+        <div class="badge-premium" data-i18n="badge.premium">💎 МАКСИМУМ</div>
+        <div class="variant-header">
+          <div class="variant-name" data-i18n="v3.name">3. ПРЕМІУМ</div>
+          <div class="variant-tagline" data-i18n="v3.tagline">1 поворотна камера (крутиться з телефону) + 2 камери 180°. Максимальний контроль.</div>
+          <div style="margin-top:8px; color:#16a34a; font-size:0.82rem; font-weight:600;" data-i18n="v3.minNote">ℹ️ Мінімум 2 камери (1 PTZ + 1 Duo)</div>
+        </div>
+        <svg class="variant-image" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+          <rect width="300" height="200" fill="#f1f5f9"/>
+          <rect x="135" y="18" width="30" height="18" fill="#475569"/>
+          <ellipse cx="150" cy="55" rx="65" ry="10" fill="#475569"/>
+          <rect x="85" y="55" width="130" height="22" fill="#334155"/>
+          <path d="M 85 77 Q 85 138 150 138 Q 215 138 215 77 Z" fill="#1e293b"/>
+          <path d="M 90 77 Q 90 82 95 82 L 205 82 Q 210 82 210 77 Z" fill="#334155"/>
+          <circle cx="150" cy="105" r="28" fill="#000"/>
+          <circle cx="150" cy="105" r="20" fill="#1e293b"/>
+          <circle cx="150" cy="105" r="12" fill="#0f172a"/>
+          <circle cx="156" cy="99" r="5" fill="#60a5fa" opacity="0.8"/>
+          <path d="M 50 105 Q 150 50 250 105" stroke="#3b82f6" stroke-width="2.5" fill="none" stroke-dasharray="4,3"/>
+          <polygon points="48,105 56,99 56,111" fill="#3b82f6"/>
+          <polygon points="252,105 244,99 244,111" fill="#3b82f6"/>
+          <circle cx="100" cy="65" r="2.5" fill="#10b981"/>
+          <text x="150" y="180" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="14" font-weight="700" fill="#1e3a8a">PTZ 360° + 16× Zoom</text>
+        </svg>
+        <div class="variant-body">
+          <strong data-i18n="v3.cams">1× поворотна + інші 180°</strong>
+          <ul class="variant-features">
+            <li data-i18n="v3.f1">Головну камеру можна крутити з телефону (360°)</li>
+            <li data-i18n="v3.f2">Зум 16× — побачите обличчя або номер машини з 50 метрів</li>
+            <li data-i18n="v3.f3">Камера сама "веде" людину, що рухається</li>
+            <li data-i18n="v3.f4">Сирена і прожектор на всіх камерах</li>
+            <li data-i18n="v3.f5">Кольорове нічне бачення</li>
+            <li data-i18n="v3.f6">180° огляд на інших камерах</li>
+            <li data-i18n="v3.f7">Ідеально для великих будинків / двору</li>
+          </ul>
+        </div>
+        <div class="variant-price">
+          <div class="price-row"><span data-i18n="price.eq">Обладнання</span><span data-price="hardware">€0</span></div>
+          <div class="price-row"><span data-i18n="price.inst">Встановлення і налаштування</span><span data-price="labor">€0</span></div>
+          <div class="price-total" data-price="total">€0</div>
+        </div>
+        <div class="variant-actions">
+          <a href="https://www.amazon.it/s?k=Reolink+RLC-823A+16X" target="_blank" rel="noopener" class="btn btn-amazon" onclick="event.stopPropagation()">🛒 Amazon</a>
+          <a href="https://www.youtube.com/watch?v=N6CZYKYyQF0" target="_blank" rel="noopener" class="btn btn-youtube" onclick="event.stopPropagation()"><span data-i18n="btn.video">▶️ Відео</span></a>
+          <button class="btn btn-select" data-i18n="btn.select">Обрати</button>
+        </div>
+      </div>
+
+      <!-- VARIANT 2 - КОМФОРТ (РЕКОМЕНДУЕМ - sweet spot) -->
+      <div class="variant-card recommended" data-variant="2">
+        <div class="badge-recommended" data-i18n="badge.recommended">🔥 САМЫЙ ПОПУЛЯРНЫЙ</div>
+        <div class="variant-header">
+          <div class="variant-name" data-i18n="v2.name">2. КОМФОРТ</div>
+          <div class="variant-tagline" data-i18n="v2.tagline">Кольорове нічне бачення, сирена проти злодіїв, бачить одразу все (180°).</div>
+        </div>
+        <svg class="variant-image" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+          <rect width="300" height="200" fill="#f1f5f9"/>
+          <rect x="140" y="15" width="20" height="22" fill="#475569"/>
+          <path d="M 50 165 Q 150 125 250 165" stroke="#3b82f6" stroke-width="2" fill="none" stroke-dasharray="4,3" opacity="0.6"/>
+          <rect x="55" y="55" width="190" height="85" rx="14" fill="#1e293b"/>
+          <rect x="55" y="55" width="190" height="22" rx="14" fill="#334155"/>
+          <rect x="55" y="65" width="190" height="12" fill="#334155"/>
+          <circle cx="105" cy="100" r="22" fill="#000"/>
+          <circle cx="105" cy="100" r="15" fill="#1e293b"/>
+          <circle cx="109" cy="96" r="4" fill="#60a5fa" opacity="0.8"/>
+          <circle cx="195" cy="100" r="22" fill="#000"/>
+          <circle cx="195" cy="100" r="15" fill="#1e293b"/>
+          <circle cx="199" cy="96" r="4" fill="#60a5fa" opacity="0.8"/>
+          <rect x="135" y="88" width="30" height="5" rx="2.5" fill="#fbbf24"/>
+          <rect x="135" y="97" width="30" height="5" rx="2.5" fill="#fbbf24"/>
+          <rect x="135" y="106" width="30" height="5" rx="2.5" fill="#fbbf24"/>
+          <circle cx="75" cy="130" r="2.5" fill="#10b981"/>
+          <text x="150" y="180" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="14" font-weight="700" fill="#1e3a8a">180° Dual Lens + LED</text>
+        </svg>
+        <div class="variant-body">
+          <strong data-i18n="v2.cams">Камери: Reolink Duo 3 PoE</strong>
+          <ul class="variant-features">
+            <li data-i18n="v2.f1">Бачить кут 180° — як через панорамне вікно</li>
+            <li data-i18n="v2.f2">Кольорове нічне бачення + автоматичний прожектор</li>
+            <li data-i18n="v2.f3">Гучна сирена — відлякує злодіїв</li>
+            <li data-i18n="v2.f4">Можна говорити через камеру — порушник почує</li>
+            <li data-i18n="v2.f5">Сама "стежить" поглядом за рухом</li>
+            <li data-i18n="v2.f6">Дуже чітка картинка (16 мегапікселів)</li>
+            <li class="no" data-i18n="v2.f7">Камеру не можна повертати з телефону</li>
+          </ul>
+        </div>
+        <div class="variant-price">
+          <div class="price-row"><span data-i18n="price.eq">Обладнання</span><span data-price="hardware">€0</span></div>
+          <div class="price-row"><span data-i18n="price.inst">Встановлення і налаштування</span><span data-price="labor">€0</span></div>
+          <div class="price-total" data-price="total">€0</div>
+        </div>
+        <div class="variant-actions">
+          <a href="https://www.amazon.it/REOLINK-Duo-PoE-Telecamera-rilevamento/dp/B0CM39K7CB" target="_blank" rel="noopener" class="btn btn-amazon" onclick="event.stopPropagation()">🛒 Amazon</a>
+          <a href="https://www.youtube.com/watch?v=wBE9A7Myicw" target="_blank" rel="noopener" class="btn btn-youtube" onclick="event.stopPropagation()"><span data-i18n="btn.video">▶️ Відео</span></a>
+          <button class="btn btn-select" data-i18n="btn.select">Обрати</button>
+        </div>
+      </div>
+
+      <!-- VARIANT 1 - БАЗОВЫЙ -->
+      <div class="variant-card" data-variant="1">
+        <div class="variant-header">
+          <div class="variant-name" data-i18n="v1.name">1. БАЗОВИЙ</div>
+          <div class="variant-tagline" data-i18n="v1.tagline">Простий надійний запис + сповіщення. Для тих, кому важлива ціна.</div>
+        </div>
+        <svg class="variant-image" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+          <rect width="300" height="200" fill="#f1f5f9"/>
+          <path d="M150 25 L150 65" stroke="#475569" stroke-width="8" stroke-linecap="round"/>
+          <rect x="125" y="18" width="50" height="10" rx="2" fill="#475569"/>
+          <ellipse cx="100" cy="120" rx="30" ry="26" fill="#1e293b"/>
+          <rect x="100" y="94" width="100" height="52" fill="#334155"/>
+          <ellipse cx="200" cy="120" rx="30" ry="26" fill="#0f172a"/>
+          <rect x="100" y="100" width="100" height="6" fill="#475569" opacity="0.6"/>
+          <circle cx="200" cy="120" r="22" fill="#000"/>
+          <circle cx="200" cy="120" r="15" fill="#1e293b"/>
+          <circle cx="205" cy="115" r="4" fill="#60a5fa" opacity="0.75"/>
+          <circle cx="115" cy="105" r="2.5" fill="#10b981"/>
+          <text x="150" y="180" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="14" font-weight="700" fill="#1e3a8a">4K Bullet Camera</text>
+        </svg>
+        <div class="variant-body">
+          <strong data-i18n="v1.cams">Камери: Reolink RLC-810A (4K)</strong>
+          <ul class="variant-features">
+            <li data-i18n="v1.f1">Дуже чітке зображення (4K — видно номери машин)</li>
+            <li data-i18n="v1.f2">Сама розрізняє людину / машину / кота</li>
+            <li data-i18n="v1.f3">Вночі бачить до 30м (чорно-біле)</li>
+            <li data-i18n="v1.f4">Чути що говорять біля камери</li>
+            <li class="no" data-i18n="v1.f5">Немає сирени</li>
+            <li class="no" data-i18n="v1.f6">Вночі тільки чорно-біле</li>
+            <li class="no" data-i18n="v1.f7">Не можна говорити через камеру</li>
+          </ul>
+        </div>
+        <div class="variant-price">
+          <div class="price-row"><span data-i18n="price.eq">Обладнання</span><span data-price="hardware">€0</span></div>
+          <div class="price-row"><span data-i18n="price.inst">Встановлення і налаштування</span><span data-price="labor">€0</span></div>
+          <div class="price-total" data-price="total">€0</div>
+        </div>
+        <div class="variant-actions">
+          <a href="https://www.amazon.it/Reolink-Videosorveglianza-Registrazione-Intelligenti-RLC-810A/dp/B08F7C37NZ" target="_blank" rel="noopener" class="btn btn-amazon" onclick="event.stopPropagation()">🛒 Amazon</a>
+          <a href="https://www.youtube.com/watch?v=zwgPyjYcmqc" target="_blank" rel="noopener" class="btn btn-youtube" onclick="event.stopPropagation()"><span data-i18n="btn.video">▶️ Відео</span></a>
+          <button class="btn btn-select" data-i18n="btn.select">Обрати</button>
+        </div>
+      </div>
 
       <!-- VARIANT 0 - БЮДЖЕТНЫЙ -->
       <div class="variant-card budget" data-variant="0">
@@ -558,148 +760,6 @@
           <a href="https://www.amazon.it/-/en/Tapo-C520WS-Starlight-Surveillance-Waterproof/dp/B0DY94MCLN" target="_blank" rel="noopener" class="btn btn-amazon" onclick="event.stopPropagation()">🛒 Amazon</a>
           <a href="https://www.youtube.com/results?search_query=Tapo+C520WS+review" target="_blank" rel="noopener" class="btn btn-youtube" onclick="event.stopPropagation()"><span data-i18n="btn.video">▶️ Видео</span></a>
           <button class="btn btn-select" data-i18n="btn.select">Выбрать</button>
-        </div>
-      </div>
-
-      <!-- VARIANT 1 -->
-      <div class="variant-card" data-variant="1">
-        <div class="variant-header">
-          <div class="variant-name" data-i18n="v1.name">1. БАЗОВИЙ</div>
-          <div class="variant-tagline" data-i18n="v1.tagline">Простий надійний запис + сповіщення. Для тих, кому важлива ціна.</div>
-        </div>
-        <svg class="variant-image" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
-          <rect width="300" height="200" fill="#f1f5f9"/>
-          <path d="M150 25 L150 65" stroke="#475569" stroke-width="8" stroke-linecap="round"/>
-          <rect x="125" y="18" width="50" height="10" rx="2" fill="#475569"/>
-          <ellipse cx="100" cy="120" rx="30" ry="26" fill="#1e293b"/>
-          <rect x="100" y="94" width="100" height="52" fill="#334155"/>
-          <ellipse cx="200" cy="120" rx="30" ry="26" fill="#0f172a"/>
-          <rect x="100" y="100" width="100" height="6" fill="#475569" opacity="0.6"/>
-          <circle cx="200" cy="120" r="22" fill="#000"/>
-          <circle cx="200" cy="120" r="15" fill="#1e293b"/>
-          <circle cx="205" cy="115" r="4" fill="#60a5fa" opacity="0.75"/>
-          <circle cx="115" cy="105" r="2.5" fill="#10b981"/>
-          <text x="150" y="180" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="14" font-weight="700" fill="#1e3a8a">4K Bullet Camera</text>
-        </svg>
-        <div class="variant-body">
-          <strong data-i18n="v1.cams">Камери: Reolink RLC-810A (4K)</strong>
-          <ul class="variant-features">
-            <li data-i18n="v1.f1">Дуже чітке зображення (4K — видно номери машин)</li>
-            <li data-i18n="v1.f2">Сама розрізняє людину / машину / кота</li>
-            <li data-i18n="v1.f3">Вночі бачить до 30м (чорно-біле)</li>
-            <li data-i18n="v1.f4">Чути що говорять біля камери</li>
-            <li class="no" data-i18n="v1.f5">Немає сирени</li>
-            <li class="no" data-i18n="v1.f6">Вночі тільки чорно-біле</li>
-            <li class="no" data-i18n="v1.f7">Не можна говорити через камеру</li>
-          </ul>
-        </div>
-        <div class="variant-price">
-          <div class="price-row"><span data-i18n="price.eq">Обладнання</span><span data-price="hardware">€0</span></div>
-          <div class="price-row"><span data-i18n="price.inst">Встановлення і налаштування</span><span data-price="labor">€0</span></div>
-          <div class="price-total" data-price="total">€0</div>
-        </div>
-        <div class="variant-actions">
-          <a href="https://www.amazon.it/Reolink-Videosorveglianza-Registrazione-Intelligenti-RLC-810A/dp/B08F7C37NZ" target="_blank" rel="noopener" class="btn btn-amazon" onclick="event.stopPropagation()">🛒 Amazon</a>
-          <a href="https://www.youtube.com/watch?v=zwgPyjYcmqc" target="_blank" rel="noopener" class="btn btn-youtube" onclick="event.stopPropagation()"><span data-i18n="btn.video">▶️ Відео</span></a>
-          <button class="btn btn-select" data-i18n="btn.select">Обрати</button>
-        </div>
-      </div>
-
-      <!-- VARIANT 2 -->
-      <div class="variant-card recommended" data-variant="2">
-        <div class="badge-recommended" data-i18n="badge.recommended">⭐ Рекомендуємо</div>
-        <div class="variant-header">
-          <div class="variant-name" data-i18n="v2.name">2. КОМФОРТ</div>
-          <div class="variant-tagline" data-i18n="v2.tagline">Кольорове нічне бачення, сирена проти злодіїв, бачить одразу все (180°).</div>
-        </div>
-        <svg class="variant-image" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
-          <rect width="300" height="200" fill="#f1f5f9"/>
-          <rect x="140" y="15" width="20" height="22" fill="#475569"/>
-          <path d="M 50 165 Q 150 125 250 165" stroke="#3b82f6" stroke-width="2" fill="none" stroke-dasharray="4,3" opacity="0.6"/>
-          <rect x="55" y="55" width="190" height="85" rx="14" fill="#1e293b"/>
-          <rect x="55" y="55" width="190" height="22" rx="14" fill="#334155"/>
-          <rect x="55" y="65" width="190" height="12" fill="#334155"/>
-          <circle cx="105" cy="100" r="22" fill="#000"/>
-          <circle cx="105" cy="100" r="15" fill="#1e293b"/>
-          <circle cx="109" cy="96" r="4" fill="#60a5fa" opacity="0.8"/>
-          <circle cx="195" cy="100" r="22" fill="#000"/>
-          <circle cx="195" cy="100" r="15" fill="#1e293b"/>
-          <circle cx="199" cy="96" r="4" fill="#60a5fa" opacity="0.8"/>
-          <rect x="135" y="88" width="30" height="5" rx="2.5" fill="#fbbf24"/>
-          <rect x="135" y="97" width="30" height="5" rx="2.5" fill="#fbbf24"/>
-          <rect x="135" y="106" width="30" height="5" rx="2.5" fill="#fbbf24"/>
-          <circle cx="75" cy="130" r="2.5" fill="#10b981"/>
-          <text x="150" y="180" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="14" font-weight="700" fill="#1e3a8a">180° Dual Lens + LED</text>
-        </svg>
-        <div class="variant-body">
-          <strong data-i18n="v2.cams">Камери: Reolink Duo 3 PoE</strong>
-          <ul class="variant-features">
-            <li data-i18n="v2.f1">Бачить кут 180° — як через панорамне вікно</li>
-            <li data-i18n="v2.f2">Кольорове нічне бачення + автоматичний прожектор</li>
-            <li data-i18n="v2.f3">Гучна сирена — відлякує злодіїв</li>
-            <li data-i18n="v2.f4">Можна говорити через камеру — порушник почує</li>
-            <li data-i18n="v2.f5">Сама "стежить" поглядом за рухом</li>
-            <li data-i18n="v2.f6">Дуже чітка картинка (16 мегапікселів)</li>
-            <li class="no" data-i18n="v2.f7">Камеру не можна повертати з телефону</li>
-          </ul>
-        </div>
-        <div class="variant-price">
-          <div class="price-row"><span data-i18n="price.eq">Обладнання</span><span data-price="hardware">€0</span></div>
-          <div class="price-row"><span data-i18n="price.inst">Встановлення і налаштування</span><span data-price="labor">€0</span></div>
-          <div class="price-total" data-price="total">€0</div>
-        </div>
-        <div class="variant-actions">
-          <a href="https://www.amazon.it/REOLINK-Duo-PoE-Telecamera-rilevamento/dp/B0CM39K7CB" target="_blank" rel="noopener" class="btn btn-amazon" onclick="event.stopPropagation()">🛒 Amazon</a>
-          <a href="https://www.youtube.com/watch?v=wBE9A7Myicw" target="_blank" rel="noopener" class="btn btn-youtube" onclick="event.stopPropagation()"><span data-i18n="btn.video">▶️ Відео</span></a>
-          <button class="btn btn-select" data-i18n="btn.select">Обрати</button>
-        </div>
-      </div>
-
-      <!-- VARIANT 3 -->
-      <div class="variant-card" data-variant="3">
-        <div class="variant-header">
-          <div class="variant-name" data-i18n="v3.name">3. ПРЕМІУМ</div>
-          <div class="variant-tagline" data-i18n="v3.tagline">1 поворотна камера (крутиться з телефону) + 2 камери 180°. Максимальний контроль.</div>
-          <div style="margin-top:8px; color:#16a34a; font-size:0.82rem; font-weight:600;" data-i18n="v3.minNote">ℹ️ Мінімум 2 камери (1 PTZ + 1 Duo)</div>
-        </div>
-        <svg class="variant-image" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
-          <rect width="300" height="200" fill="#f1f5f9"/>
-          <rect x="135" y="18" width="30" height="18" fill="#475569"/>
-          <ellipse cx="150" cy="55" rx="65" ry="10" fill="#475569"/>
-          <rect x="85" y="55" width="130" height="22" fill="#334155"/>
-          <path d="M 85 77 Q 85 138 150 138 Q 215 138 215 77 Z" fill="#1e293b"/>
-          <path d="M 90 77 Q 90 82 95 82 L 205 82 Q 210 82 210 77 Z" fill="#334155"/>
-          <circle cx="150" cy="105" r="28" fill="#000"/>
-          <circle cx="150" cy="105" r="20" fill="#1e293b"/>
-          <circle cx="150" cy="105" r="12" fill="#0f172a"/>
-          <circle cx="156" cy="99" r="5" fill="#60a5fa" opacity="0.8"/>
-          <path d="M 50 105 Q 150 50 250 105" stroke="#3b82f6" stroke-width="2.5" fill="none" stroke-dasharray="4,3"/>
-          <polygon points="48,105 56,99 56,111" fill="#3b82f6"/>
-          <polygon points="252,105 244,99 244,111" fill="#3b82f6"/>
-          <circle cx="100" cy="65" r="2.5" fill="#10b981"/>
-          <text x="150" y="180" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="14" font-weight="700" fill="#1e3a8a">PTZ 360° + 16× Zoom</text>
-        </svg>
-        <div class="variant-body">
-          <strong data-i18n="v3.cams">1× поворотна + інші 180°</strong>
-          <ul class="variant-features">
-            <li data-i18n="v3.f1">Головну камеру можна крутити з телефону (360°)</li>
-            <li data-i18n="v3.f2">Зум 16× — побачите обличчя або номер машини з 50 метрів</li>
-            <li data-i18n="v3.f3">Камера сама "веде" людину, що рухається</li>
-            <li data-i18n="v3.f4">Сирена і прожектор на всіх камерах</li>
-            <li data-i18n="v3.f5">Кольорове нічне бачення</li>
-            <li data-i18n="v3.f6">180° огляд на інших камерах</li>
-            <li data-i18n="v3.f7">Ідеально для великих будинків / двору</li>
-          </ul>
-        </div>
-        <div class="variant-price">
-          <div class="price-row"><span data-i18n="price.eq">Обладнання</span><span data-price="hardware">€0</span></div>
-          <div class="price-row"><span data-i18n="price.inst">Встановлення і налаштування</span><span data-price="labor">€0</span></div>
-          <div class="price-total" data-price="total">€0</div>
-        </div>
-        <div class="variant-actions">
-          <a href="https://www.amazon.it/s?k=Reolink+RLC-823A+16X" target="_blank" rel="noopener" class="btn btn-amazon" onclick="event.stopPropagation()">🛒 Amazon</a>
-          <a href="https://www.youtube.com/watch?v=N6CZYKYyQF0" target="_blank" rel="noopener" class="btn btn-youtube" onclick="event.stopPropagation()"><span data-i18n="btn.video">▶️ Відео</span></a>
-          <button class="btn btn-select" data-i18n="btn.select">Обрати</button>
         </div>
       </div>
 
@@ -921,7 +981,7 @@ const PRICES = {
   cableAndSD: 65,        // на 1 камеру: Cat6 outdoor ~13 + SanDisk 128GB ~20 + Junction Box B10 ~28 + расходники ~4
   cameraStandard: 85,    // Reolink RLC-810A 4K (ASIN B08F7C37NZ)
   cameraDuo3: 170,       // Reolink Duo 3 PoE 16MP (ASIN B0CM39K7CB) — Amazon.it €161.49 + буфер
-  cameraPTZ: 200,        // Reolink RLC-823A 16X PTZ — TODO: на Amazon.it реально €260-280
+  cameraPTZ: 280,        // Reolink RLC-823A 16X PTZ — фактическая цена Amazon.it (€260-300)
   laborFixed: 300,
   laborPerCamera: 50,
   ptzLaborSurcharge: 20,
@@ -969,6 +1029,15 @@ const T = {
     "count.hint.3": "3 камери — оптимально для дому (вхід, двір, задній кут)",
     "count.hint.4": "4 камери — для великої території / периметра",
 
+    "savings.pro.label": "🏢 Професійна фірма в Італії",
+    "savings.pro.value": "€2 000 – €2 800",
+    "savings.me.label": "✅ Моя пропозиція",
+    "savings.me.value": "від €540",
+    "savings.saved.label": "💸 Економія до",
+    "savings.saved.value": "€2 200",
+    "savings.note": "Те ж обладнання Reolink/TP-Link, та ж гарантія Amazon, та ж офіційна установка — тільки без накруток фірми.",
+    "badge.premium": "💎 МАКСИМУМ",
+    "badge.recommended": "🔥 НАЙПОПУЛЯРНІШИЙ",
     "v0.name": "0. ЕКОНОМ",
     "v0.tagline": "WiFi камери — найдешевший варіант. PTZ + сирена + прожектор. Потребує гарний WiFi.",
     "v0.cams": "Камери: TP-Link Tapo C520WS",
@@ -1183,6 +1252,15 @@ const T = {
     "count.hint.3": "3 камеры — оптимально для дома (вход, двор, задний угол)",
     "count.hint.4": "4 камеры — для большой территории / периметра",
 
+    "savings.pro.label": "🏢 Профессиональная фирма в Италии",
+    "savings.pro.value": "€2 000 – €2 800",
+    "savings.me.label": "✅ Моё предложение",
+    "savings.me.value": "от €540",
+    "savings.saved.label": "💸 Экономия до",
+    "savings.saved.value": "€2 200",
+    "savings.note": "То же оборудование Reolink/TP-Link, та же гарантия Amazon, та же официальная установка — только без накруток фирмы.",
+    "badge.premium": "💎 МАКСИМУМ",
+    "badge.recommended": "🔥 САМЫЙ ПОПУЛЯРНЫЙ",
     "v0.name": "0. ЭКОНОМ",
     "v0.tagline": "WiFi камеры — самый дешёвый вариант. PTZ + сирена + прожектор. Требует хороший WiFi.",
     "v0.cams": "Камеры: TP-Link Tapo C520WS",
@@ -1397,6 +1475,15 @@ const T = {
     "count.hint.3": "3 telecamere — ottimale per la casa (ingresso, cortile, retro)",
     "count.hint.4": "4 telecamere — per grandi proprietà / perimetro",
 
+    "savings.pro.label": "🏢 Azienda professionale in Italia",
+    "savings.pro.value": "€2 000 – €2 800",
+    "savings.me.label": "✅ La mia offerta",
+    "savings.me.value": "da €540",
+    "savings.saved.label": "💸 Risparmi fino a",
+    "savings.saved.value": "€2 200",
+    "savings.note": "Stessa attrezzatura Reolink/TP-Link, stessa garanzia Amazon, stessa installazione ufficiale — solo senza il ricarico dell'azienda.",
+    "badge.premium": "💎 MASSIMO",
+    "badge.recommended": "🔥 PIÙ POPOLARE",
     "v0.name": "0. ECONOMY",
     "v0.tagline": "Telecamere WiFi — il pacchetto più economico. PTZ + sirena + faretto. Serve un buon WiFi.",
     "v0.cams": "Telecamere: TP-Link Tapo C520WS",
