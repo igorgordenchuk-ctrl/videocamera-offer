@@ -927,7 +927,9 @@ const PRICES = {
   ptzLaborSurcharge: 20,
   // V0 (Эконом / WiFi)
   cameraTapoWiFi: 70,        // TP-Link Tapo C520WS PTZ WiFi (ASIN B0DY94MCLN)
-  sdAndPowerV0: 20,          // SD + удлинитель на 1 WiFi камеру
+  sdCardV0: 15,              // microSD 128GB на каждую камеру
+  extensionCordV0: 15,       // удлинитель розетки 5-15м на каждую камеру
+  repeaterV0: 15,            // базовый WiFi репитер 1 шт на комплект (TP-Link RE200 и аналоги)
   laborFixedV0: 150,         // Эконом: в 2× меньше (без прокладки кабеля)
   laborPerCameraV0: 25
 };
@@ -1621,9 +1623,9 @@ function effectiveCount(variantNum, N) {
 }
 function calcHardware(variantNum, N) {
   const M = effectiveCount(variantNum, N);
-  // V0: WiFi Tapo — нет PoE switch, нет Ethernet, дешевле обвязка
+  // V0: WiFi Tapo — камера + SD + удлинитель розетки на каждую + базовый репитер (1 шт)
   if (variantNum === 0) {
-    return M * (PRICES.cameraTapoWiFi + PRICES.sdAndPowerV0);
+    return M * (PRICES.cameraTapoWiFi + PRICES.sdCardV0 + PRICES.extensionCordV0) + PRICES.repeaterV0;
   }
   let cameras = 0;
   if (variantNum === 1) cameras = M * PRICES.cameraStandard;
