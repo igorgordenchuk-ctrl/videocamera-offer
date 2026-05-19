@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Видеонаблюдение для вашего дома — Предложение</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --primary: #1e3a8a;
+    --primary-light: #3b82f6;
+    --accent: #f59e0b;
+    --success: #10b981;
+    --danger: #ef4444;
+    --bg: #f8fafc;
+    --card-bg: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+    --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding-bottom: 140px;
+  }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    color: white;
+    padding: 60px 20px 40px;
+    text-align: center;
+  }
+  .hero h1 { font-size: 2.5rem; margin-bottom: 12px; font-weight: 800; }
+  .hero p { font-size: 1.2rem; opacity: 0.95; max-width: 700px; margin: 0 auto; }
+  .hero .badge {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+  /* SECTIONS */
+  section { padding: 50px 0; }
+  h2 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 12px;
+    color: var(--primary);
+  }
+  .subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+  }
+
+  /* COMMON FEATURES */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    margin-top: 30px;
+  }
+  .feature {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .feature-icon {
+    font-size: 1.8rem;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  .feature-text strong { display: block; margin-bottom: 4px; }
+  .feature-text small { color: var(--text-muted); font-size: 0.88rem; line-height: 1.4; }
+
+  /* CAMERA COUNT SELECTOR */
+  .count-selector {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: var(--shadow);
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .count-selector-label {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 16px;
+  }
+  .count-options {
+    display: inline-flex;
+    gap: 12px;
+    background: #f1f5f9;
+    padding: 6px;
+    border-radius: 14px;
+  }
+  .count-option {
+    cursor: pointer;
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    transition: all 0.2s;
+    user-select: none;
+    min-width: 80px;
+  }
+  .count-option input { display: none; }
+  .count-option:hover { color: var(--primary); }
+  .count-option.active {
+    background: var(--primary);
+    color: white;
+    box-shadow: var(--shadow);
+  }
+  .count-hint {
+    margin-top: 14px;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+  }
+
+  /* VARIANT CARDS */
+  .variants {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+    margin-top: 20px;
+  }
+  .variant-card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    border: 3px solid transparent;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .variant-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+  .variant-card.selected {
+    border-color: var(--success);
+    box-shadow: 0 0 0 4px rgba(16,185,129,0.15), var(--shadow-lg);
+  }
+  .variant-card.recommended::before {
+    content: "⭐ Рекомендуем";
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: var(--accent);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    z-index: 2;
+  }
+  .variant-header {
+    padding: 24px 24px 16px;
+    background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+  }
+  .variant-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 4px;
+  }
+  .variant-tagline {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    min-height: 48px;
+  }
+  .variant-image {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+    background: #f8fafc;
+    padding: 16px;
+  }
+  .variant-body {
+    padding: 20px 24px;
+    flex-grow: 1;
+  }
+  .variant-features {
+    list-style: none;
+    margin-bottom: 16px;
+  }
+  .variant-features li {
+    padding: 6px 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .variant-features li::before {
+    content: "✓";
+    color: var(--success);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .variant-features li.no::before {
+    content: "✗";
+    color: var(--danger);
+  }
+  .variant-price {
+    padding: 16px 24px;
+    background: #f8fafc;
+    border-top: 1px solid var(--border);
+  }
+  .price-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+  .price-total {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-top: 8px;
+  }
+  .variant-actions {
+    padding: 16px 24px 24px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s;
+  }
+  .btn-amazon {
+    background: #ff9900;
+    color: white;
+    flex: 1;
+    justify-content: center;
+  }
+  .btn-amazon:hover { background: #e88c00; }
+  .btn-youtube {
+    background: #ff0000;
+    color: white;
+    flex: 1;
+    justify-content: center;
+  }
+  .btn-youtube:hover { background: #cc0000; }
+  .btn-select {
+    background: var(--primary);
+    color: white;
+    width: 100%;
+    justify-content: center;
+    padding: 14px;
+    font-size: 1rem;
+    margin-top: 8px;
+  }
+  .btn-select:hover { background: var(--primary-light); }
+  .variant-card.selected .btn-select {
+    background: var(--success);
+  }
+  .variant-card.selected .btn-select::before {
+    content: "✓ ";
+  }
+
+  /* COMPARISON TABLE */
+  .comparison {
+    overflow-x: auto;
+    margin-top: 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px;
+  }
+  th, td {
+    padding: 14px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  th {
+    background: var(--primary);
+    color: white;
+    font-weight: 600;
+  }
+  th:not(:first-child), td:not(:first-child) { text-align: center; }
+  tr:hover { background: #f8fafc; }
+
+  /* ADD-ONS */
+  .addons {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: var(--shadow);
+    margin-top: 30px;
+  }
+  .addons h3 {
+    color: var(--primary);
+    margin-bottom: 8px;
+    font-size: 1.4rem;
+  }
+  .addon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .addon-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px;
+    background: #f8fafc;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .addon-item:hover { background: #e0f2fe; }
+  .addon-item.checked {
+    background: #dbeafe;
+    border-color: var(--primary-light);
+  }
+  .addon-item input { width: 20px; height: 20px; cursor: pointer; flex-shrink: 0; }
+  .addon-label { flex-grow: 1; }
+  .addon-name { font-weight: 600; color: var(--text); }
+  .addon-desc { font-size: 0.85rem; color: var(--text-muted); }
+  .addon-price {
+    font-weight: 700;
+    color: var(--success);
+    white-space: nowrap;
+  }
+
+  /* GDPR INFO */
+  .info-box {
+    background: #fef3c7;
+    border-left: 4px solid var(--accent);
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 30px;
+  }
+  .info-box h4 {
+    color: #92400e;
+    margin-bottom: 8px;
+  }
+  .info-box p { color: #78350f; }
+  .info-box ol { margin-left: 20px; margin-top: 8px; color: #78350f; }
+
+  /* GLOSSARY */
+  .glossary {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: var(--shadow);
+    margin-top: 30px;
+  }
+  .glossary h3 { color: var(--primary); margin-bottom: 16px; font-size: 1.4rem; }
+  .glossary-item {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .glossary-item:last-child { border-bottom: none; }
+  .glossary-term {
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 4px;
+  }
+  .glossary-def { color: var(--text); }
+
+  /* INCLUDED */
+  .included {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: var(--shadow);
+    margin-top: 30px;
+  }
+  .included h3 { color: var(--primary); margin-bottom: 16px; }
+  .included-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 8px;
+    list-style: none;
+  }
+  .included-list li {
+    padding: 8px 0;
+    padding-left: 28px;
+    position: relative;
+  }
+  .included-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--success);
+    font-weight: 700;
+    font-size: 1.2rem;
+  }
+
+  /* STICKY SUMMARY */
+  .summary-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    border-top: 1px solid var(--border);
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+    padding: 16px 20px;
+    z-index: 100;
+  }
+  .summary-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .summary-info { flex-grow: 1; }
+  .summary-variant { font-size: 0.9rem; color: var(--text-muted); }
+  .summary-total {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--primary);
+  }
+  .summary-breakdown {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+  .btn-order {
+    background: var(--success);
+    color: white;
+    padding: 14px 32px;
+    font-size: 1.1rem;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-weight: 700;
+  }
+  .btn-order:hover { background: #059669; }
+  .btn-order:disabled { background: #cbd5e1; cursor: not-allowed; }
+
+  /* MODAL */
+  .modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .modal.open { display: flex; }
+  .modal-content {
+    background: white;
+    border-radius: 16px;
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 30px;
+  }
+  .modal-content h3 { color: var(--primary); margin-bottom: 16px; }
+  .order-detail {
+    background: #f8fafc;
+    border-radius: 10px;
+    padding: 16px;
+    margin: 16px 0;
+  }
+  .order-detail-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+  }
+  .order-detail-row.indent { font-size: 0.85rem; color: var(--text-muted); padding-left: 16px; }
+  .order-detail-total {
+    border-top: 2px solid var(--primary);
+    margin-top: 10px;
+    padding-top: 10px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--primary);
+  }
+  .form-group { margin-bottom: 16px; }
+  .form-group label { display: block; margin-bottom: 6px; font-weight: 600; }
+  .form-group input, .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+  }
+  .modal-actions { display: flex; gap: 10px; margin-top: 20px; }
+  .btn-close {
+    background: #e2e8f0;
+    color: var(--text);
+    flex: 1;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  .btn-submit {
+    background: var(--success);
+    color: white;
+    flex: 2;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 700;
+  }
+
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 1.8rem; }
+    .hero p { font-size: 1rem; }
+    h2 { font-size: 1.5rem; }
+    section { padding: 30px 0; }
+    .count-option { padding: 12px 20px; font-size: 1.2rem; min-width: 60px; }
+    .summary-content { flex-direction: column; align-items: stretch; }
+    .summary-total { text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="badge">Предложение для частного дома</div>
+  <h1>📹 Видеонаблюдение под ключ</h1>
+  <p>Камеры с просмотром через телефон. Простыми словами объясним что и зачем, поможем выбрать вариант под ваш бюджет.</p>
+</div>
+
+<div class="container">
+
+  <!-- COMMON FEATURES -->
+  <section>
+    <h2>Что вы получаете</h2>
+    <p class="subtitle">Базовые возможности — одинаковы во всех вариантах. Простыми словами:</p>
+    <div class="features-grid">
+
+      <div class="feature">
+        <div class="feature-icon">📱</div>
+        <div class="feature-text">
+          <strong>Просмотр с телефона</strong>
+          <small>В любой точке мира открываете приложение — видите что происходит дома в реальном времени. Как Skype с камерой, только бесплатно.</small>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">🔔</div>
+        <div class="feature-text">
+          <strong>Уведомления на телефон</strong>
+          <small>Когда камера видит человека или машину — телефон сразу пикает (как когда приходит SMS), и появляется фото на экране. Можно сразу посмотреть видео. Работает даже если приложение закрыто.</small>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">🤖</div>
+        <div class="feature-text">
+          <strong>Умная камера</strong>
+          <small>Камера сама понимает что движется: человек, машина или кот. На кошек и листья на ветру уведомление не пришлёт — только на важное.</small>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">💾</div>
+        <div class="feature-text">
+          <strong>Запись видео</strong>
+          <small>Видео хранится прямо в камере на маленькой карточке памяти (как в фотоаппарате). 30-60 дней назад можно отмотать и посмотреть. Старое стирается само.</small>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">🌙</div>
+        <div class="feature-text">
+          <strong>Видит ночью</strong>
+          <small>В темноте включает невидимую подсветку — видит как днём (только чёрно-белое в базовом варианте, цветное в Комфорт/Премиум).</small>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">☔</div>
+        <div class="feature-text">
+          <strong>Не боится погоды</strong>
+          <small>Защищена от дождя, снега, пыли. Можно вешать на улице — производитель гарантирует работу при -10°C до +50°C.</small>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">🔌</div>
+        <div class="feature-text">
+          <strong>Один тонкий провод</strong>
+          <small>От камеры до коробочки в доме идёт один кабель (как телефонный) — он сразу даёт камере электричество И передаёт видео. На улице не нужна розетка!</small>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">🛡️</div>
+        <div class="feature-text">
+          <strong>Гарантия 2 года</strong>
+          <small>Покупка через Amazon — гарантия производителя Reolink. Если камера сломается за 2 года — заменят бесплатно. Все чеки покажу.</small>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CAMERA COUNT + VARIANTS -->
+  <section>
+    <h2>Выберите количество и вариант</h2>
+    <p class="subtitle">Чем больше камер — тем больше углов покрытия. Выберите подходящее количество, потом вариант.</p>
+
+    <div class="count-selector">
+      <div class="count-selector-label">📷 Сколько камер вам нужно?</div>
+      <div class="count-options" id="count-options">
+        <label class="count-option" data-count="2"><input type="radio" name="cam-count" value="2"><span>2</span></label>
+        <label class="count-option active" data-count="3"><input type="radio" name="cam-count" value="3" checked><span>3</span></label>
+        <label class="count-option" data-count="4"><input type="radio" name="cam-count" value="4"><span>4</span></label>
+      </div>
+      <div class="count-hint" id="count-hint">3 камеры — оптимально для дома (вход, двор, задний угол)</div>
+    </div>
+
+    <div class="variants">
+
+      <!-- VARIANT 1 -->
+      <div class="variant-card" data-variant="1">
+        <div class="variant-header">
+          <div class="variant-name">1. БАЗОВЫЙ</div>
+          <div class="variant-tagline">Простая надёжная запись + уведомления. Для тех, кому важна цена.</div>
+        </div>
+        <img class="variant-image" src="https://m.media-amazon.com/images/I/61n5JS5gqOL._AC_SL1500_.jpg" alt="Reolink RLC-810A" onerror="this.src='https://reolink.com/wp-content/uploads/2020/09/rlc-810a-1.png'">
+        <div class="variant-body">
+          <strong>Камеры: Reolink RLC-810A (4K)</strong>
+          <ul class="variant-features">
+            <li>Очень чёткое изображение (4K — видно номера машин)</li>
+            <li>Сама различает человека / машину / кота</li>
+            <li>Ночью видит до 30м (чёрно-белое)</li>
+            <li>Слышно что говорят возле камеры</li>
+            <li class="no">Нет сирены</li>
+            <li class="no">Ночью только чёрно-белое</li>
+            <li class="no">Нельзя говорить через камеру</li>
+          </ul>
+        </div>
+        <div class="variant-price">
+          <div class="price-row"><span>Оборудование</span><span data-price="hardware">€0</span></div>
+          <div class="price-row"><span>Установка и настройка</span><span data-price="labor">€0</span></div>
+          <div class="price-total" data-price="total">€0</div>
+        </div>
+        <div class="variant-actions">
+          <a href="https://www.amazon.it/Reolink-Videosorveglianza-Registrazione-Intelligenti-RLC-810A/dp/B08F7C37NZ" target="_blank" rel="noopener" class="btn btn-amazon" onclick="event.stopPropagation()">🛒 Amazon</a>
+          <a href="https://www.youtube.com/watch?v=zwgPyjYcmqc" target="_blank" rel="noopener" class="btn btn-youtube" onclick="event.stopPropagation()">▶️ Видео-обзор</a>
+          <button class="btn btn-select">Выбрать</button>
+        </div>
+      </div>
+
+      <!-- VARIANT 2 -->
+      <div class="variant-card recommended" data-variant="2">
+        <div class="variant-header">
+          <div class="variant-name">2. КОМФОРТ</div>
+          <div class="variant-tagline">Цветное ночное видение, сирена против воров, видит сразу всё (180°).</div>
+        </div>
+        <img class="variant-image" src="https://m.media-amazon.com/images/I/61tBdYzkVCL._AC_SL1500_.jpg" alt="Reolink Duo 3 PoE" onerror="this.src='https://reolink.com/wp-content/uploads/2024/01/reolink-duo-3-poe.png'">
+        <div class="variant-body">
+          <strong>Камеры: Reolink Duo 3 PoE</strong>
+          <ul class="variant-features">
+            <li>Видит угол 180° — как через панорамное окно</li>
+            <li>Цветное ночное видение + автоматический фонарь</li>
+            <li>Громкая сирена — отпугивает воров</li>
+            <li>Можно говорить через камеру — нарушитель услышит</li>
+            <li>Сама "следит" взглядом за движением</li>
+            <li>Очень чёткая картинка (16 мегапикселей)</li>
+            <li class="no">Камеру нельзя поворачивать с телефона</li>
+          </ul>
+        </div>
+        <div class="variant-price">
+          <div class="price-row"><span>Оборудование</span><span data-price="hardware">€0</span></div>
+          <div class="price-row"><span>Установка и настройка</span><span data-price="labor">€0</span></div>
+          <div class="price-total" data-price="total">€0</div>
+        </div>
+        <div class="variant-actions">
+          <a href="https://www.amazon.it/REOLINK-Duo-PoE-Telecamera-rilevamento/dp/B0CM39K7CB" target="_blank" rel="noopener" class="btn btn-amazon" onclick="event.stopPropagation()">🛒 Amazon</a>
+          <a href="https://www.youtube.com/watch?v=wBE9A7Myicw" target="_blank" rel="noopener" class="btn btn-youtube" onclick="event.stopPropagation()">▶️ Видео-обзор</a>
+          <button class="btn btn-select">Выбрать</button>
+        </div>
+      </div>
+
+      <!-- VARIANT 3 -->
+      <div class="variant-card" data-variant="3">
+        <div class="variant-header">
+          <div class="variant-name">3. ПРЕМИУМ</div>
+          <div class="variant-tagline">1 поворотная камера (крутится с телефона) + 2 камеры 180°. Максимальный контроль.</div>
+        </div>
+        <img class="variant-image" src="https://m.media-amazon.com/images/I/71xZsmlqVCL._AC_SL1500_.jpg" alt="Reolink RLC-823A 16X PTZ" onerror="this.src='https://reolink.com/wp-content/uploads/2022/03/rlc-823a-16x.png'">
+        <div class="variant-body">
+          <strong>1× поворотная + остальные 180°</strong>
+          <ul class="variant-features">
+            <li>Главную камеру можно крутить с телефона (360°)</li>
+            <li>Зум 16× — увидите лицо или номер машины с 50 метров</li>
+            <li>Камера сама "ведёт" движущегося человека</li>
+            <li>Сирена и фонарь на всех камерах</li>
+            <li>Цветное ночное видение</li>
+            <li>180° обзор у остальных камер</li>
+            <li>Идеально для больших домов / большого двора</li>
+          </ul>
+        </div>
+        <div class="variant-price">
+          <div class="price-row"><span>Оборудование</span><span data-price="hardware">€0</span></div>
+          <div class="price-row"><span>Установка и настройка</span><span data-price="labor">€0</span></div>
+          <div class="price-total" data-price="total">€0</div>
+        </div>
+        <div class="variant-actions">
+          <a href="https://www.amazon.it/s?k=Reolink+RLC-823A+16X" target="_blank" rel="noopener" class="btn btn-amazon" onclick="event.stopPropagation()">🛒 Amazon</a>
+          <a href="https://www.youtube.com/watch?v=N6CZYKYyQF0" target="_blank" rel="noopener" class="btn btn-youtube" onclick="event.stopPropagation()">▶️ Видео-обзор</a>
+          <button class="btn btn-select">Выбрать</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- COMPARISON TABLE -->
+  <section>
+    <h2>Подробное сравнение</h2>
+    <p class="subtitle">Все возможности в одной таблице</p>
+    <div class="comparison">
+      <table>
+        <thead>
+          <tr>
+            <th>Возможность</th>
+            <th>1. Базовый</th>
+            <th>2. Комфорт</th>
+            <th>3. Премиум</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Чёткость изображения</td><td>4K (8MP)</td><td>16MP</td><td>16MP + PTZ</td></tr>
+          <tr><td>Угол обзора</td><td>87°</td><td>180°</td><td>180° + 360° поворот</td></tr>
+          <tr><td>Цветное ночное видение</td><td>❌ Чёрно-белое</td><td>✅</td><td>✅</td></tr>
+          <tr><td>Сирена для отпугивания</td><td>❌</td><td>✅</td><td>✅</td></tr>
+          <tr><td>Фонарь LED</td><td>❌</td><td>✅</td><td>✅</td></tr>
+          <tr><td>Говорить через камеру</td><td>❌ Только слышать</td><td>✅</td><td>✅</td></tr>
+          <tr><td>Поворот камеры с телефона</td><td>❌</td><td>❌</td><td>✅ (1 камера)</td></tr>
+          <tr><td>Зум (приближение)</td><td>❌</td><td>❌</td><td>✅ 16×</td></tr>
+          <tr><td>Автоматически следит за движением</td><td>❌</td><td>❌</td><td>✅</td></tr>
+          <tr><td>Запись на карту памяти</td><td>✅</td><td>✅</td><td>✅</td></tr>
+          <tr><td>Сколько хранится архив</td><td>~30-60 дней</td><td>~30-60 дней</td><td>~30-60 дней</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ADD-ONS -->
+  <section>
+    <div class="addons">
+      <h3>Дополнительные возможности</h3>
+      <p class="addons-subtitle" style="color:var(--text-muted)">Отметьте что хотите добавить — цена пересчитается автоматически</p>
+
+      <div class="addon-grid">
+
+        <label class="addon-item">
+          <input type="checkbox" data-price="300" data-name="NVR рекордер + жёсткий диск 2TB">
+          <div class="addon-label">
+            <div class="addon-name">📼 Рекордер с диском (NVR)</div>
+            <div class="addon-desc">Все камеры пишут на 1 большой диск дома (вместо карточек). Хранится 3-6 месяцев. Если камеру украдут — записи целы.</div>
+          </div>
+          <div class="addon-price">+€300</div>
+        </label>
+
+        <label class="addon-item">
+          <input type="checkbox" data-price="50" data-name="Внутренняя WiFi камера для холла">
+          <div class="addon-label">
+            <div class="addon-name">🏠 Внутренняя камера в дом</div>
+            <div class="addon-desc">Маленькая поворотная камера для холла или коридора (Tapo C200, по WiFi)</div>
+          </div>
+          <div class="addon-price">+€50</div>
+        </label>
+
+        <label class="addon-item">
+          <input type="checkbox" data-price="150" data-name="Камера для распознавания номеров машин">
+          <div class="addon-label">
+            <div class="addon-name">🚗 Распознавание номеров машин</div>
+            <div class="addon-desc">Специальная камера на въезд — читает номер машины и записывает в журнал кто и когда заезжал</div>
+          </div>
+          <div class="addon-price">+€150</div>
+        </label>
+
+        <label class="addon-item">
+          <input type="checkbox" data-price="70" data-name="Тревожная кнопка возле кровати">
+          <div class="addon-label">
+            <div class="addon-name">🚨 Тревожная кнопка</div>
+            <div class="addon-desc">Кнопка возле кровати или у входа. Нажал — ревёт сирена + всем родным приходит SOS на телефон</div>
+          </div>
+          <div class="addon-price">+€70</div>
+        </label>
+
+        <label class="addon-item">
+          <input type="checkbox" data-price="40" data-name="Длинные кабели (для больших расстояний)">
+          <div class="addon-label">
+            <div class="addon-name">📏 Длинные кабели (больше 25м)</div>
+            <div class="addon-desc">Если дом большой и расстояние от роутера до камеры более 25 метров</div>
+          </div>
+          <div class="addon-price">+€40</div>
+        </label>
+
+        <label class="addon-item">
+          <input type="checkbox" data-price="120" data-name="Облачное хранение на 1 год">
+          <div class="addon-label">
+            <div class="addon-name">☁️ Облачное хранение (1 год)</div>
+            <div class="addon-desc">Записи дополнительно сохраняются на серверах Reolink в интернете. Даже если карты украдут — записи остаются.</div>
+          </div>
+          <div class="addon-price">+€120</div>
+        </label>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- GLOSSARY -->
+  <section>
+    <div class="glossary">
+      <h3>📖 Словарь — что это такое простыми словами</h3>
+
+      <div class="glossary-item">
+        <div class="glossary-term">🔔 Push-уведомления (уведомления на телефон)</div>
+        <div class="glossary-def">Маленькое окошко с фото которое появляется на экране телефона когда камера что-то заметила. Похоже на SMS, но с картинкой. Можно нажать и сразу посмотреть видео. <strong>Работает даже когда телефон в кармане и экран выключен</strong> — телефон пикает или вибрирует. Можно настроить когда присылать (например, только ночью), и кому из семьи присылать.</div>
+      </div>
+
+      <div class="glossary-item">
+        <div class="glossary-term">📡 PoE (один провод вместо двух)</div>
+        <div class="glossary-def">От камеры до коробочки в доме идёт <strong>один тонкий кабель</strong> (как телефонный). По этому кабелю одновременно подаётся электричество камере И передаётся видео в дом. Не нужна отдельная розетка на улице, и не нужно прокладывать 2 провода.</div>
+      </div>
+
+      <div class="glossary-item">
+        <div class="glossary-term">🤖 AI-детекция (умная камера)</div>
+        <div class="glossary-def">Камера сама различает что именно движется в кадре: <strong>человек, машина, животное</strong>. Если пробежал кот или ветка качнулась от ветра — уведомление не придёт. Это очень важно, иначе телефон пиликал бы 100 раз в день впустую.</div>
+      </div>
+
+      <div class="glossary-item">
+        <div class="glossary-term">🎤 Двусторонняя связь (2-way audio)</div>
+        <div class="glossary-def">В камере есть и микрофон и динамик. Вы со своего телефона можете не только <strong>слышать что говорят возле камеры</strong>, но и <strong>сказать что-то в ответ</strong> — нарушитель или гость услышит ваш голос из камеры. Удобно: можно сказать курьеру "оставьте у двери" или крикнуть "уходите отсюда!" чужому.</div>
+      </div>
+
+      <div class="glossary-item">
+        <div class="glossary-term">💡 Прожектор (фонарь LED)</div>
+        <div class="glossary-def">Встроенная в камеру яркая лампа. Включается автоматически когда камера видит движение ночью. Сразу 2 пользы: <strong>цветное видео даже в темноте</strong> + <strong>пугает воров</strong> (никто не любит когда на него внезапно светят).</div>
+      </div>
+
+      <div class="glossary-item">
+        <div class="glossary-term">📹 NVR (рекордер для записи)</div>
+        <div class="glossary-def">Коробочка размером с DVD-плеер которая стоит дома (рядом с роутером). Внутри жёсткий диск как в компьютере (2 терабайта = 2000 ГБ). <strong>Все камеры пишут видео не на свои маленькие карточки, а на этот большой диск.</strong> Преимущества: записи хранятся 3-6 месяцев, удобно скачивать архив, если камеру украдут — записи всё равно остаются дома.</div>
+      </div>
+
+      <div class="glossary-item">
+        <div class="glossary-term">🔄 PTZ (поворотная камера)</div>
+        <div class="glossary-def">P = Pan (повернуть), T = Tilt (наклонить), Z = Zoom (приблизить). Это камера у которой <strong>внутри мотор</strong>. Вы со своего телефона можете крутить её в любую сторону, наклонять вверх/вниз и приближать (зум). Как в кино когда оператор управляет камерой джойстиком.</div>
+      </div>
+
+      <div class="glossary-item">
+        <div class="glossary-term">📐 Угол обзора 180°</div>
+        <div class="glossary-def">Обычная камера видит как через дверной глазок — узкий угол. А камера 180° видит <strong>всё что перед ней — слева, справа и прямо</strong>, как через панорамное окно. Одна такая камера заменяет 2 обычных по охвату.</div>
+      </div>
+
+      <div class="glossary-item">
+        <div class="glossary-term">🛡️ IP66 / IP67 (защита от воды и пыли)</div>
+        <div class="glossary-def">Маркировка которая говорит что камеру <strong>можно вешать на улице</strong>. IP66 — выдерживает любой дождь и струю воды (можно мыть из шланга). IP67 — выдержит даже короткое погружение в воду. Зимой и летом работает без проблем.</div>
+      </div>
+
+      <div class="glossary-item">
+        <div class="glossary-term">📡 Wi-Fi vs Кабель — почему мы выбрали кабель</div>
+        <div class="glossary-def">Wi-Fi удобен, но снаружи дома сигнал часто слабый — камера будет тормозить, видео обрываться, уведомления опаздывать. Поэтому профессиональные системы используют <strong>один тонкий кабель</strong> (PoE) — это надёжно работает 10 лет без проблем.</div>
+      </div>
+
+      <div class="glossary-item">
+        <div class="glossary-term">💾 Карта памяти (microSD)</div>
+        <div class="glossary-def">Маленькая карточка размером с ноготь — такая же стоит в фотоаппаратах и телефонах. Вставляется внутрь каждой камеры, на ней хранится видео. <strong>128 ГБ хватает на 30-60 дней записи.</strong> Когда карточка заполняется — самые старые записи стираются и записываются новые (карточку менять не нужно).</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- INCLUDED -->
+  <section>
+    <div class="included">
+      <h3>🔧 Что входит в "установку под ключ"</h3>
+      <ul class="included-list">
+        <li>Покупка оборудования (чеки Amazon покажу)</li>
+        <li>Приезд на осмотр и план камер</li>
+        <li>Прокладка кабелей через стены</li>
+        <li>Сверление отверстий, крепление камер</li>
+        <li>Герметизация мест ввода кабеля</li>
+        <li>Подключение и тестирование</li>
+        <li>Установка приложения на ваш телефон (и членов семьи)</li>
+        <li>Настройка чтобы не было ложных уведомлений</li>
+        <li>Настройка "ночного режима охраны"</li>
+        <li>Уведомления с фото-превью</li>
+        <li>Обучение — как пользоваться</li>
+        <li>Табличка "Area videosorvegliata" (требование закона)</li>
+        <li>Гарантия моей работы 1 год</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- GDPR -->
+  <section>
+    <div class="info-box">
+      <h4>🛡️ Важно — закон GDPR в Италии</h4>
+      <p>В Италии нельзя снимать улицу или соседей без разрешения. Я заранее всё настрою правильно:</p>
+      <ol>
+        <li>Камеры будут снимать <strong>только вашу территорию</strong> — если в кадр попадает чужая земля, я "замажу" её на видео (программно)</li>
+        <li>Повешу обязательную <strong>табличку "Здесь ведётся видеонаблюдение"</strong></li>
+        <li>Покажу соседям с телефона что они не в кадре, если они спросят</li>
+      </ol>
+    </div>
+  </section>
+
+</div>
+
+<!-- STICKY SUMMARY -->
+<div class="summary-bar">
+  <div class="summary-content">
+    <div class="summary-info">
+      <div class="summary-variant" id="summary-variant">👆 Выберите количество и вариант выше</div>
+      <div class="summary-total" id="summary-total">€0</div>
+      <div class="summary-breakdown" id="summary-breakdown"></div>
+    </div>
+    <button class="btn-order" id="btn-order" disabled onclick="openOrderModal()">📩 Отправить заказ</button>
+  </div>
+</div>
+
+<!-- MODAL: ORDER -->
+<div class="modal" id="orderModal">
+  <div class="modal-content">
+    <h3>Ваш заказ</h3>
+    <div class="order-detail" id="orderDetail"></div>
+
+    <div class="form-group">
+      <label>Ваше имя</label>
+      <input type="text" id="customer-name" placeholder="Имя и фамилия">
+    </div>
+    <div class="form-group">
+      <label>Телефон / WhatsApp</label>
+      <input type="text" id="customer-phone" placeholder="+39 ...">
+    </div>
+    <div class="form-group">
+      <label>Адрес установки</label>
+      <input type="text" id="customer-address" placeholder="Город, улица">
+    </div>
+    <div class="form-group">
+      <label>Комментарии (опционально)</label>
+      <textarea id="customer-notes" rows="3" placeholder="Особые пожелания, удобное время для осмотра..."></textarea>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn-close" onclick="closeModal('orderModal')">Закрыть</button>
+      <button class="btn-submit" onclick="sendOrder()">📲 Отправить через WhatsApp</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const INSTALLER_CONTACT = "+380979273791";
+
+  // Цены оборудования (€)
+  const PRICES = {
+    poeSwitch: 50,
+    cableAndSD: 27,        // кабель 12 + SD 15 на камеру
+    cameraStandard: 85,    // Reolink RLC-810A
+    cameraDuo3: 170,       // Reolink Duo 3 PoE
+    cameraPTZ: 200,        // Reolink RLC-823A 16X
+    laborFixed: 80,        // фикс. часть: sopralluogo, настройка, GDPR
+    laborPerCamera: 60,    // прокладка + монтаж + настройка на камеру
+    ptzLaborSurcharge: 20  // доп. за PTZ настройку
+  };
+
+  const VARIANT_NAMES = {
+    1: "Вариант 1: БАЗОВЫЙ",
+    2: "Вариант 2: КОМФОРТ",
+    3: "Вариант 3: ПРЕМИУМ"
+  };
+
+  let state = {
+    cameraCount: 3,
+    selectedVariant: null
+  };
+
+  function calcHardware(variantNum, N) {
+    let cameras = 0;
+    if (variantNum === 1) cameras = N * PRICES.cameraStandard;
+    else if (variantNum === 2) cameras = N * PRICES.cameraDuo3;
+    else if (variantNum === 3) cameras = PRICES.cameraPTZ + (N - 1) * PRICES.cameraDuo3;
+    return PRICES.poeSwitch + N * PRICES.cableAndSD + cameras;
+  }
+  function calcLabor(variantNum, N) {
+    return PRICES.laborFixed + N * PRICES.laborPerCamera +
+      (variantNum === 3 ? PRICES.ptzLaborSurcharge : 0);
+  }
+
+  // Обновление цен на карточках
+  function refreshAllPrices() {
+    [1, 2, 3].forEach(v => {
+      const card = document.querySelector(`.variant-card[data-variant="${v}"]`);
+      const hw = calcHardware(v, state.cameraCount);
+      const lb = calcLabor(v, state.cameraCount);
+      const total = hw + lb;
+      card.querySelector('[data-price="hardware"]').textContent = `€${hw}`;
+      card.querySelector('[data-price="labor"]').textContent = `€${lb}`;
+      card.querySelector('[data-price="total"]').textContent = `€${total}`;
+    });
+    updateSummary();
+  }
+
+  // Выбор количества камер
+  document.querySelectorAll('.count-option').forEach(opt => {
+    opt.addEventListener('click', () => {
+      document.querySelectorAll('.count-option').forEach(o => o.classList.remove('active'));
+      opt.classList.add('active');
+      opt.querySelector('input').checked = true;
+      state.cameraCount = parseInt(opt.dataset.count);
+      const hints = {
+        2: "2 камеры — минимум, для покрытия входа и одного бокового угла",
+        3: "3 камеры — оптимально для дома (вход, двор, задний угол)",
+        4: "4 камеры — для большой территории / периметра"
+      };
+      document.getElementById('count-hint').textContent = hints[state.cameraCount];
+      refreshAllPrices();
+    });
+  });
+
+  // Выбор варианта
+  document.querySelectorAll('.variant-card').forEach(card => {
+    card.addEventListener('click', e => {
+      if (e.target.closest('a') || e.target.closest('button.btn-amazon') || e.target.closest('button.btn-youtube')) return;
+      selectVariant(card);
+    });
+  });
+
+  function selectVariant(card) {
+    document.querySelectorAll('.variant-card').forEach(c => c.classList.remove('selected'));
+    card.classList.add('selected');
+    state.selectedVariant = parseInt(card.dataset.variant);
+    updateSummary();
+  }
+
+  // Доп. опции
+  document.querySelectorAll('.addon-item input').forEach(input => {
+    input.addEventListener('change', e => {
+      e.target.closest('.addon-item').classList.toggle('checked', e.target.checked);
+      updateSummary();
+    });
+  });
+
+  function getCheckedAddons() {
+    return [...document.querySelectorAll('.addon-item input:checked')].map(input => ({
+      name: input.dataset.name,
+      price: parseInt(input.dataset.price)
+    }));
+  }
+
+  function updateSummary() {
+    const variantEl = document.getElementById('summary-variant');
+    const totalEl = document.getElementById('summary-total');
+    const breakdownEl = document.getElementById('summary-breakdown');
+    const orderBtn = document.getElementById('btn-order');
+
+    if (!state.selectedVariant) {
+      variantEl.textContent = '👆 Выберите количество и вариант выше';
+      totalEl.textContent = '€0';
+      breakdownEl.textContent = '';
+      orderBtn.disabled = true;
+      return;
+    }
+
+    const v = state.selectedVariant;
+    const N = state.cameraCount;
+    const addons = getCheckedAddons();
+    const addonsTotal = addons.reduce((sum, a) => sum + a.price, 0);
+
+    const baseHardware = calcHardware(v, N);
+    const labor = calcLabor(v, N);
+    const totalHardware = baseHardware + addonsTotal;
+    const total = totalHardware + labor;
+
+    let summary = `${VARIANT_NAMES[v]} · ${N} камер`;
+    if (addons.length > 0) summary += ` · +${addons.length} доп.`;
+    variantEl.textContent = summary;
+    totalEl.textContent = `€${total}`;
+    breakdownEl.textContent = `Оборудование: €${totalHardware}  +  Установка: €${labor}`;
+    orderBtn.disabled = false;
+  }
+
+  function openOrderModal() {
+    if (!state.selectedVariant) return;
+    const v = state.selectedVariant;
+    const N = state.cameraCount;
+    const addons = getCheckedAddons();
+    const addonsTotal = addons.reduce((sum, a) => sum + a.price, 0);
+
+    const baseHardware = calcHardware(v, N);
+    const labor = calcLabor(v, N);
+    const totalHardware = baseHardware + addonsTotal;
+    const total = totalHardware + labor;
+
+    let html = '';
+    html += `<div class="order-detail-row"><span><strong>${VARIANT_NAMES[v]}</strong></span><span>${N} камер</span></div>`;
+    html += `<div class="order-detail-row indent"><span>— Базовое оборудование</span><span>€${baseHardware}</span></div>`;
+    if (addons.length > 0) {
+      addons.forEach(a => {
+        html += `<div class="order-detail-row indent"><span>— ${a.name}</span><span>€${a.price}</span></div>`;
+      });
+    }
+    html += `<div class="order-detail-row"><span><strong>Оборудование всего</strong></span><span><strong>€${totalHardware}</strong></span></div>`;
+    html += `<div class="order-detail-row"><span><strong>Установка и настройка</strong></span><span><strong>€${labor}</strong></span></div>`;
+    html += `<div class="order-detail-row order-detail-total"><span>ИТОГО ПОД КЛЮЧ</span><span>€${total}</span></div>`;
+
+    document.getElementById('orderDetail').innerHTML = html;
+    document.getElementById('orderModal').classList.add('open');
+  }
+
+  function closeModal(id) {
+    document.getElementById(id).classList.remove('open');
+  }
+
+  function sendOrder() {
+    const name = document.getElementById('customer-name').value;
+    const phone = document.getElementById('customer-phone').value;
+    const address = document.getElementById('customer-address').value;
+    const notes = document.getElementById('customer-notes').value;
+
+    const v = state.selectedVariant;
+    const N = state.cameraCount;
+    const addons = getCheckedAddons();
+    const addonsTotal = addons.reduce((sum, a) => sum + a.price, 0);
+    const baseHardware = calcHardware(v, N);
+    const labor = calcLabor(v, N);
+    const totalHardware = baseHardware + addonsTotal;
+    const total = totalHardware + labor;
+
+    let msg = `🎥 Заказ видеонаблюдения%0A%0A`;
+    msg += `${VARIANT_NAMES[v]}%0A`;
+    msg += `Количество камер: ${N}%0A`;
+    msg += `%0AОборудование: €${totalHardware}%0A`;
+    if (addons.length > 0) {
+      msg += `(включает доп.:%0A`;
+      addons.forEach(a => msg += `  • ${a.name}: €${a.price}%0A`);
+      msg += `)%0A`;
+    }
+    msg += `Установка: €${labor}%0A`;
+    msg += `*ИТОГО: €${total}*%0A%0A`;
+    if (name) msg += `Имя: ${name}%0A`;
+    if (phone) msg += `Телефон: ${phone}%0A`;
+    if (address) msg += `Адрес: ${address}%0A`;
+    if (notes) msg += `%0AКомментарии: ${notes}%0A`;
+
+    const waUrl = `https://wa.me/${INSTALLER_CONTACT.replace(/\D/g,'')}?text=${msg}`;
+    window.open(waUrl, '_blank');
+  }
+
+  // Close modal on background click
+  document.querySelectorAll('.modal').forEach(m => {
+    m.addEventListener('click', e => {
+      if (e.target === m) closeModal(m.id);
+    });
+  });
+
+  // Инициализация
+  refreshAllPrices();
+</script>
+
+</body>
+</html>
